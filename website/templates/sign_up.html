@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/signup.css') }}">
+    <title>Sign up</title>
+</head>
+<body>
+    
+    <div class="all">
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{message}}
+    </div>
+
+    <form action="{{ url_for('auth.sign_up') }}" method="post">
+        <img src="Logo.png" alt="Logo">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="location" placeholder="Location">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="confirm_password" placeholder="Confirm Password">
+        <button type="submit">Sign up</button>
+    </form>
+    <br>
+    <p>Already have an account?</p><a href="{{ url_for('auth.login') }}">login</a>
+
+    </div>
+</body>
+</html>

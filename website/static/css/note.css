@@ -1,0 +1,135 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  h2 {
+    margin-top: 20px;
+  }
+  
+  .note-container {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+    position: relative;
+  }
+  
+  .note-icon {
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .note-container h3 {
+    margin-top: 0;
+  }
+  
+  .note-text {
+    max-height: 200px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  
+  .delete-note-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .note-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .note-icon:hover {
+    transform: scale(1.2);
+  }
+  
+  .note-icon:active {
+    transform: scale(0.8);
+  }
+  
+  .note-icon::before {
+    content: "";
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: #eee;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .note-icon:hover::before {
+    background-color: #ddd;
+  }
+  
+  .note-icon:active::before {
+    box-shadow: none;
+  }
+  
+  h3 {
+    margin: 0;
+  }
+  
+  p {
+    margin: 10px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+    margin: 10px;
+  }
+  
+  input[type="text"], textarea {
+    width: 100%;
+    margin: 10px;
+    padding: 5px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  select {
+    width: 100%;
+    margin: 10px;
+    padding: 5px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button[type="submit"] {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color:  #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #333;
+  }
+  
+  button[type="submit"]:active {
+    transform: scale(0.9);
+    background-color: #333;
+  }
+  
