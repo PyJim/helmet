@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: url("Background.png");
+  background-image: url("/website/static/images/Background.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

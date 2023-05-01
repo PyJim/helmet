@@ -15,8 +15,11 @@
         {{message}}
     </div>
 
+    <div class="logo-container">
+        <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
+    </div>
+
     <form action="{{ url_for('auth.sign_up') }}" method="post">
-        <img src="Logo.png" alt="Logo">
         <input type="text" name="email" placeholder="Email">
         <input type="text" name="location" placeholder="Location">
         <input type="password" name="password" placeholder="Password">
