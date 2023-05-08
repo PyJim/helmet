@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Helmet App - Disasters</title>
+</head>
+<body>
+    <h1>Disasters</h1>
+
+    <form method="GET" action="/search">
+        <input type="text" name="keyword" placeholder="Search disaster">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for disaster in disasters %}
+        <li>
+            <a href="/disaster/{{ disaster.id }}">{{ disaster.type }} in {{ disaster.location }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

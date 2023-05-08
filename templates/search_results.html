@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Helmet App - Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <p>Keyword: {{ keyword }}</p>
+    <ul>
+        {% for disaster in disasters %}
+        <li>
+            <a href="/disaster/{{ disaster.id }}">{{ disaster.type }} in {{ disaster.location }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
