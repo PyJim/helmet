@@ -9,13 +9,15 @@
 <body>
     <header>
         <div class="Logo">
-            <img src="static\images\Logo.png" alt="Logo">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
+            </a>
         </div>
         <div class="Nav-links">
             <ul>
-                <li><a href="#">Update</a></li>
-                <li><a href="#">Donate</a></li>
-                <li><a href="#">Notification</a></li>
+                <li><a href="/">Update</a></li>
+                <li><a href="/disaster_watch">Disaster Watch</a></li>
+                <li><a href="/statistics">Statistics</a></li>
             </ul>
         </div>
         <div class="filter-icon">

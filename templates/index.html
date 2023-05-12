@@ -8,8 +8,8 @@
         <h1>Get Latest Information <br>
              On Disasters <br> Across The Globe
         </h1>
-        <button>DISASTER WATCH</button>
-        <button>STATISTICS</button>
+        <a href="{{ url_for('disaster_watch') }}"><button>DISASTER WATCH</button></a>
+        <a href="{{ url_for('statistics') }}"><button>STATISTICS</button></a>
     </div>
     <div class="map">
         <img src="static\images\Map.png" alt="map">

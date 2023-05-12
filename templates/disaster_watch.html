@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Helmet App - Disaster Watch{% endblock %}
+
+{% block content %}
+<section id="disaster-watch">
+    <h2>Disaster Watch</h2>
+    <div class="news-container">
+        {% for news_report in news_reports %}
+        <div class="news-item">
+            <h3>{{ news_report.title }}</h3>
+            <p>{{ news_report.description }}</p>
+            <p>Source: {{ news_report.source }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
