@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Helmet App - Disasters</title>
-</head>
-<body>
-    <h1>Disasters</h1>
+{% extends 'base.html' %}
 
-    <form method="GET" action="/search">
-        <input type="text" name="keyword" placeholder="Search disaster">
-        <button type="submit">Search</button>
-    </form>
+{% block title %}Helmet App - Home{% endblock %}
 
-    <ul>
-        {% for disaster in disasters %}
-        <li>
-            <a href="/disaster/{{ disaster.id }}">{{ disaster.type }} in {{ disaster.location }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% block content %}
+<section id="homepage">
+    <div class="Left-side">
+        <h1>Get Latest Information <br>
+             On Disasters <br> Across The Globe
+        </h1>
+        <button>DISASTER WATCH</button>
+        <button>STATISTICS</button>
+    </div>
+    <div class="map">
+      
+    </div>
+</section>
+{% endblock %}

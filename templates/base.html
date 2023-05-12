@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Helmet App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="Logo">
+            <img src="static\images\Logo.png" alt="Logo">
+        </div>
+        <div class="Nav-links">
+            <ul>
+                <li><a href="#">Update</a></li>
+                <li><a href="#">Donate</a></li>
+                <li><a href="#">Notification</a></li>
+            </ul>
+        </div>
+        <div class="filter-icon">
+            <i class="fas fa-filter"></i>
+        </div>
+    </header>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
