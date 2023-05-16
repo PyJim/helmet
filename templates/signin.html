@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Helmet App - Sign in{% endblock %}
+
+{% block content %}
+
+<section id="homepage">
+    {% if message|length %}
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{message}}
+    </div>
+    {% endif %}
+
+    <div class="signin_form">
+        <form action="{{ url_for("signin") }}" method="post">
+            <h1>Sign in</h1>
+            <!--- username --->
+            <div class="label">
+                <label for="username">Username</label>
+                <input type="text" name="username">
+            </div>
+
+            <!--- Password --->
+            <div class="label">
+                <label for="password">Password</label>
+                <input type="password" name="password">
+            </div>
+        
+            <!--- Submit --->
+            <div class="submit">
+                <button type="submit" class="button">Sign in</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="create_account">
+        <p>Do not have an account?</p>
+        <a href="/signup">Create new account</a>
+    </div>
+</section>
+
+{% endblock %}

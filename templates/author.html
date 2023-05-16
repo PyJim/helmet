@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}Helmet App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="Logo">
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
+            </a>
+        </div>
+        <div class="Nav-links">
+            <ul>
+                <li><a href="/{{author[2]}}/updates">Updates</a></li>
+                <li><a href="/{{author[2]}}/report">Report</a></li>
+                <li><a href="/{{author[2]}}/donate">Donate</a></li>
+                <li><a href="/{{author[2]}}/notification">Notification</a></li>
+            </ul>
+        </div>
+        <div class="filter-icon">
+            <i class="fas fa-filter"></i>
+        </div>
+        <div class="author">
+            <h3>{{author[1]}}</h3>
+        </div>
+    </header>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <section id="homepage">
+        {% for report in reports %}
+            <div class="reports">
+                <h3>{{report[1]}}</h3>
+                <h5>{{report[2]}}</h5>
+                <p>{{report[3]}}</p>
+                <img src="report[4]" alt="">
+                <a href="report[5]"></a>
+                <h5>{{report[6]}}</h5>
+            </div>
+        {% endfor %}
+
+    </section>
+    
+</body>
+    <script src="script.js"></script>
+
+</html>

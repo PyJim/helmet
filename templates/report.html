@@ -1,0 +1,51 @@
+{% extends 'author.html' %}
+
+{% block title %}Helmet App - Report{% endblock %}
+
+{% block content %}
+
+<section class="report_form" id="homepage">
+    <h1>Report</h1>
+    <form action="{{ url_for("report", username=author[2]) }}" method="post">
+        <!---Full name--->
+        <div class="fill">
+            <label for="title" class="label">Title</label>
+            <input type="text" class="input" name="title">
+        </div>
+    
+        <!---Username-->
+        <div class="fill">
+            <label for="location" class="label">Location</label>
+            <input type="text" class="input" name="location">
+        </div>
+    
+        <!---Email-->
+        <div class="fill">
+            <label for="description" class="label">Description</label>
+            <input type="text" class="input" name="description">
+        </div>
+    
+        <!-- Password -->
+        <div class="fill">
+            <label for="image" class="label">Image</label>
+            <input type="text" class="input" name="image">
+        </div>
+    
+        <!---confirm password-->
+        <div class="fill">
+            <label for="video" class="label">Link to Video</label>
+            <input type="text" class="input" name="video">
+        </div>
+    
+        <!--- Submit --->
+        <div class="submit">
+            <button type="submit" class="button">Report</button>
+        </div>
+    </form>
+    
+    <div class="back">
+        <a href="/author/{{author[2]}}">Back to home</a>
+    </div>
+</section>
+
+{% endblock %}

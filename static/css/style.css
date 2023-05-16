@@ -1,7 +1,7 @@
 /* style.css */
 
 /* Reset default styles */
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,14 +23,14 @@ header {
 
 .Logo img {
     height: 50px;
-    margin-left: 170px;
+    margin-left: 100px;
 }
 
 .Nav-links {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    margin-right: 350px;
+    margin-right: 250px;
 }
 
 .Nav-links ul {
@@ -43,7 +43,7 @@ header {
     padding: 20px;
 }
 
-.Nav-links ul li a {
+.Nav-links ul li a, .author h3 {
     color: black;
     text-decoration: none;
     font-size: 24px;
@@ -58,6 +58,14 @@ header {
     margin-right: 40px;
 }
 
+.author{
+    margin-right: 100px;
+}
+
+.author h3{
+    font-weight: normal;
+    text-transform: capitalize;
+}
 /* Homepage styles */
 #homepage {
     display: flex;

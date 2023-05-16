@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect('report.db')
+connection = sqlite3.connect('database.db')
 
 print("initializing db...")
 with open('schema.sql') as f:

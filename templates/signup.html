@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Helmet App - Home{% endblock %}
+
+{% block content %}
+
+<section id="homepage">
+
+    {% if message|length %}
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{message}}
+    </div>
+    {% endif %}
+
+
+    <div class="signup_form">
+        <h1>Sign Up</h1>
+        <form action="{{ url_for("signup") }}" method="post">
+            <!---Full name--->
+            <div class="fill">
+                <label for="name" class="label">Full Name</label>
+                <input type="text" class="input" name="name">
+            </div>
+            
+            <!---Username-->
+            <div class="fill">
+                <label for="username" class="label">Username</label>
+                <input type="text" class="input" name="username">
+            </div>
+            
+            <!---Email-->
+            <div class="fill">
+                <label for="email" class="label">Email</label>
+                <input type="email" class="input" name="email">
+            </div>
+            
+            <!-- Password -->
+            <div class="fill">
+                <label for="password" class="label">Password</label>
+                <input type="password" class="input" name="password">
+            </div>
+            
+            <!---confirm password-->
+            <div class="fill">
+                <label for="confirm_password" class="label">Confirm Password</label>
+                <input type="password" class="input" name="confirm_password">
+            </div>
+            
+            <!--- Submit --->
+            <div class="submit">
+                <button type="submit" class="button">Sign up</button>
+            </div>
+        </form>
+
+        <div class="signin">
+            <p>Already have an account?</p>
+            <a href="/signin">Sign in</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
