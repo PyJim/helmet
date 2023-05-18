@@ -182,3 +182,48 @@ header {
 .report_head_container{
     margin-top: -50px;
 }
+.report_form, .signin_form, .signup_form{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 500px;
+    height: 600px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+        
+}
+.signin_form form{
+    margin-top: -100px;
+}
+.report_form{
+    align-self: center;
+}
+form{
+    align-self: center;
+    text-align: center;
+}
+.fill{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+}
+.fill .input{
+    height: 35px;
+    width: 300px;
+    border-radius: 10px;
+    align-self: flex-end;
+}
+input, textarea {
+    right: 0;
+}
+.fill textarea{
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+    align-self: flex-end;
+}

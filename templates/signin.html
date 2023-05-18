@@ -5,26 +5,30 @@
 {% block content %}
 
 <section id="homepage">
-    {% if message|length %}
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        {{message}}
-    </div>
-    {% endif %}
 
     <div class="signin_form">
-        <form action="{{ url_for("signin") }}" method="post">
+        {% if message|length %}
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{message}}
+        </div>
+        {% endif %}
+
+        <div>
             <h1>Sign in</h1>
+        </div>
+
+        <form action="{{ url_for("signin") }}" method="post">
             <!--- username --->
-            <div class="label">
-                <label for="username">Username</label>
-                <input type="text" name="username">
+            <div class="fill">
+                <label for="username" class="label">Username</label>
+                <input type="text" name="username" class="input">
             </div>
 
             <!--- Password --->
-            <div class="label">
-                <label for="password">Password</label>
-                <input type="password" name="password">
+            <div class="fill">
+                <label for="password" class="label">Password</label>
+                <input type="password" name="password" class="input">
             </div>
         
             <!--- Submit --->
@@ -32,12 +36,13 @@
                 <button type="submit" class="button">Sign in</button>
             </div>
         </form>
+
+        <div class="create_account">
+            <p>Do not have an account?</p>
+            <a href="/signup">Create new account</a>
+        </div>
     </div>
 
-    <div class="create_account">
-        <p>Do not have an account?</p>
-        <a href="/signup">Create new account</a>
-    </div>
 </section>
 
 {% endblock %}
