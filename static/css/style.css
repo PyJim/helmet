@@ -43,7 +43,7 @@ header {
     padding: 20px;
 }
 
-.Nav-links ul li a, .author h3 {
+.Nav-links ul li a, .author h3, .report_head {
     color: black;
     text-decoration: none;
     font-size: 24px;
@@ -151,4 +151,34 @@ header {
 #chart-container {
     width: 100%;
     height: 400px;
+}
+
+.report_container{
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.all_reports{
+    display: flex;
+    align-self: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: left;
+    width: 95%;
+    margin-top: 60px;
+}
+
+.report {
+    width: 300px;
+    padding: 10px;
+    border: solid 2px rgb(171, 167, 167);
+}
+.report img{
+    width: 280px;
+    height: 225px;
+}
+
+.report_head_container{
+    margin-top: -50px;
 }

@@ -36,17 +36,26 @@
         {% endblock %}
     </div>
 
-    <section id="homepage">
-        {% for report in reports %}
-            <div class="reports">
-                <h3>{{report[1]}}</h3>
-                <h5>{{report[2]}}</h5>
-                <p>{{report[3]}}</p>
-                <img src="report[4]" alt="">
-                <a href="report[5]"></a>
-                <h5>{{report[6]}}</h5>
-            </div>
-        {% endfor %}
+    <section id="homepage" class="report_container">
+        <div class="report_head_container">
+            <h3 class="report_head">
+                Recent Reports
+            </h3>
+        </div>
+
+        <div class="all_reports">
+            {% for report in reports %}
+                <div class="report">
+                    <img src="/static/images/work1.jpg" alt="" class="report_image">
+                    <h3>{{report[1]}}</h3>
+                    <h5>{{report[2]}}</h5>
+                    <p>{{report[3]}}</p>
+                    <!--<img src="report[4]" alt="">-->
+                    <a href="report[5]"></a>
+                    <h5>{{report[6]}}</h5>
+                </div>
+            {% endfor %}
+        </div>
 
     </section>
     
