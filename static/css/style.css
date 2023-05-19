@@ -215,7 +215,6 @@ form{
 .fill .input{
     height: 35px;
     width: 300px;
-    border-radius: 10px;
     align-self: flex-end;
 }
 input, textarea {
@@ -224,6 +223,5 @@ input, textarea {
 .fill textarea{
     width: 300px;
     height: 100px;
-    border-radius: 10px;
     align-self: flex-end;
 }

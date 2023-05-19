@@ -1,8 +1,35 @@
 {% extends 'base.html' %}
 
-{% block title %}Helmet App - Home{% endblock %}
+{% block title %}Helmet App - Sign up{% endblock %}
 
 {% block content %}
+
+<style type="text/css">
+    body {
+        padding-top: 150px;
+    }
+
+    .form-signup {
+        margin: 0 auto;
+        max-width: 400px;
+        padding: 15px;
+    }
+    .form-signup h2{
+        text-align: center;
+    }
+    .submit-btn{
+        background-color: black;
+        max-width: 400px;
+        width: 100%;
+    }
+    .submit-btn:hover{
+        background-color: rgba(0, 0, 0, 0.637);
+    }
+    input{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
 
 <section id="homepage">
 
@@ -17,42 +44,46 @@
             {% endif %}
         {% endwith %}
         
-        <h1>Sign Up</h1>
-        <form action="{{ url_for("signup") }}" method="post">
+        <h2>Sign Up</h2>
+        <form action="{{ url_for("signup") }}" method="post" class="form-signup">
             <!---Full name--->
-            <div class="fill">
-                <label for="name" class="label">Full Name</label>
-                <input type="text" class="input" name="name">
+            
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="Full Name" required>
             </div>
             
+            
             <!---Username-->
-            <div class="fill">
-                <label for="username" class="label">Username</label>
-                <input type="text" class="input" name="username">
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
             </div>
             
             <!---Email-->
-            <div class="fill">
-                <label for="email" class="label">Email</label>
-                <input type="email" class="input" name="email">
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
             </div>
             
             <!-- Password -->
-            <div class="fill">
-                <label for="password" class="label">Password</label>
-                <input type="password" class="input" name="password">
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
             </div>
             
             <!---confirm password-->
-            <div class="fill">
-                <label for="confirm_password" class="label">Confirm Password</label>
-                <input type="password" class="input" name="confirm_password">
+            <div class="form-group">
+                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
             </div>
             
-            <!--- Submit --->
-            <div class="submit">
-                <button type="submit" class="button">Sign up</button>
+            <!---checkbox-->
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="">
+                    I accept the <a href="#">Terms of Use</a> & <a href="">Privacy Policy</a>
+                </label>
             </div>
+            <!--- Submit --->
+            
+            <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="Sign Up">
+            
         </form>
 
         <div class="signin">

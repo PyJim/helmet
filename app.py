@@ -41,10 +41,10 @@ def signup():
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
 
-        if signup_empty(name, username, email, password, confirm_password):
+        """if signup_empty(name, username, email, password, confirm_password):
             message = 'please fill all available'
             flash(message)
-            return redirect(request.url)
+            return redirect(request.url)"""
 
         user_password = PasswordCheck(password, confirm_password)
         user_email = EmailCheck(email)
@@ -96,10 +96,10 @@ def signin():
         username = request.form.get('username')
         password = request.form.get('password')
     # ensuring that only non empty passwords are allowed
-        if signin_empty(username, password):
+        """if signin_empty(username, password):
             message = 'please fill all available'
             flash(message)
-            return redirect(request.url)
+            return redirect(request.url)"""
 
         global author
         author = find_author(username)
