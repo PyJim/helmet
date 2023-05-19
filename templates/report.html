@@ -7,7 +7,18 @@
 <section id="homepage">
     <div class="report_form">
         <h1>Report</h1>
-        <form action="{{ url_for("report", username=author[2]) }}" method="post">
+        <p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </p>
+        <form action="{{ url_for("report", username=author[2]) }}" method="post" enctype="multipart/form-data">
             <!---Title--->
             <div class="fill">
                 <label for="title" class="label">Title</label>
@@ -28,8 +39,8 @@
         
             <!-- image -->
             <div class="fill">
-                <label for="image" class="label">Image</label>
-                <input type="text" class="input" name="image">
+                <label for="file" class="label">Image</label>
+                <input type="file" class="input" name="file" autocomplete="off" required>
             </div>
         
             <!---video link-->

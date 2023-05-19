@@ -7,12 +7,15 @@
 <section id="homepage">
 
     <div class="signin_form">
-        {% if message|length %}
-        <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            {{message}}
-        </div>
-        {% endif %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
 
         <div>
             <h1>Sign in</h1>

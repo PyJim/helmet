@@ -1,12 +1,25 @@
-from flask import Flask, render_template, request, g, redirect
+from flask import Flask, render_template, request, g, redirect, flash
 from queries import signup_empty, get_author_reports, signin_empty, PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, add_report, get_all_reports
 import os
 from flask_bcrypt import Bcrypt
 from flask import Flask, render_template, request
+from werkzeug.utils import secure_filename
+import urllib.request
+
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
+UPLOAD_FOLDER = 'static/images/'
+
+app.secret_key = 'secrete key'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+ALLOWED_IMAGE_EXTENSIONS = set(['jpg', 'png', 'gif', 'jpeg'])
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
 
 @app.teardown_appcontext
 def close_connection(exception):
@@ -30,20 +43,24 @@ def signup():
 
         if signup_empty(name, username, email, password, confirm_password):
             message = 'please fill all available'
-            return render_template('signup.html', message=message)
+            flash(message)
+            return redirect(request.url)
 
         user_password = PasswordCheck(password, confirm_password)
         user_email = EmailCheck(email)
 
         if user_password.mismatch():
             message = 'password mismatch'
-            return render_template('signup.html', message=message)
+            flash(message)
+            return redirect(request.url)
         elif user_password.not_strong():
             message = 'weak password'
-            return render_template('signup.html', message=message)
+            flash(message)
+            return redirect(request.url)
         elif user_email.invalid():
             message = 'invalid email'
-            return render_template('signup.html', message=message)
+            flash(message)
+            return redirect(request.url)
 
         author = check_author(username, email)
         result1 = author[0]
@@ -51,20 +68,24 @@ def signup():
 
         if result1 and result2:
             message = f'{username} and {email} already exist'
-            return render_template('signup.html', message=message)
+            flash(message)
+            return redirect(request.url)
         elif result1:
             message = f'{username} already exist'
-            return render_template('signup.html', message=message)
+            flash(message)
+            return redirect(request.url)
         elif result2:
             message = f'{email} already exist'
-            return render_template('signup.html', message=message)
+            flash(message)
+            return redirect(request.url)
         else:
             password = bcrypt.generate_password_hash(password).decode('utf-8')
             create_author(name.capitalize(), username,
                         email, password)
             create_author_reports(username)
             message = f'Account created successfully'
-            return render_template('signin.html', message=message)
+            flash(message)
+            return render_template('signin.html')
 
     return render_template('signup.html')
 
@@ -77,7 +98,8 @@ def signin():
     # ensuring that only non empty passwords are allowed
         if signin_empty(username, password):
             message = 'please fill all available'
-            return render_template('signin.html', message=message)
+            flash(message)
+            return redirect(request.url)
 
         global author
         author = find_author(username)
@@ -89,10 +111,13 @@ def signin():
                 return redirect(f'/author/{username}')
             else:
                 message = 'incorrect password'
-                return render_template('signin.html', message=message)
+                flash(message)
+                return redirect(request.url)
         else:
             message = 'User does not exist'
-            return render_template('signin.html', message=message)
+            flash(message)
+            return redirect(request.url)
+        
     return render_template('signin.html')
 
 @app.route('/author/<username>')
@@ -121,13 +146,34 @@ def report(username):
         title = request.form.get('title')
         location = request.form.get('location')
         description = request.form.get('description')
-        image = request.form.get('image')
         video = request.form.get('video')
 
-        create_report(username, title, location, description, image, video)
-        add_report(username, title, location, description, image, video)
+        if 'file' not in request.files:
+            flash('No file chosen')
+            return redirect(request.url)
+        
+        file = request.files['file']
 
-        return redirect(f'/author/{username}')
+        if file.filename == '':
+            flash('No image selected')
+            return redirect(request.url)
+        
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            flash('Image successfully uploaded')
+
+            create_report(username, title, location, description, filename, video)
+            add_report(username, title, location, description, filename, video)
+
+            return redirect(f'/author/{username}')
+
+        else:
+            flash('Allowed image types are - png, jpg, jpeg and gif')
+            return redirect(request.url)
+
+
     return render_template('report.html', author=find_author(username)[0])
 
 
