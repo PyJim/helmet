@@ -1,7 +1,7 @@
 /* style.css */
 
 /* Reset default styles */
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,14 +23,14 @@ header {
 
 .Logo img {
     height: 50px;
-    margin-left: 170px;
+    margin-left: 100px;
 }
 
 .Nav-links {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    margin-right: 350px;
+    margin-right: 250px;
 }
 
 .Nav-links ul {
@@ -43,7 +43,7 @@ header {
     padding: 20px;
 }
 
-.Nav-links ul li a {
+.Nav-links ul li a, .author h3, .report_head {
     color: black;
     text-decoration: none;
     font-size: 24px;
@@ -58,6 +58,14 @@ header {
     margin-right: 40px;
 }
 
+.author{
+    margin-right: 100px;
+}
+
+.author h3{
+    font-weight: normal;
+    text-transform: capitalize;
+}
 /* Homepage styles */
 #homepage {
     display: flex;
@@ -143,4 +151,77 @@ header {
 #chart-container {
     width: 100%;
     height: 400px;
+}
+
+.report_container{
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.all_reports{
+    display: flex;
+    align-self: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: left;
+    width: 95%;
+    margin-top: 60px;
+}
+
+.report {
+    width: 300px;
+    padding: 10px;
+    border: solid 2px rgb(171, 167, 167);
+}
+.report img{
+    width: 280px;
+    height: 225px;
+}
+
+.report_head_container{
+    margin-top: -50px;
+}
+.report_form, .signin_form, .signup_form{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 500px;
+    height: 600px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+        
+}
+.signin_form form{
+    margin-top: -100px;
+}
+.report_form{
+    align-self: center;
+}
+form{
+    align-self: center;
+    text-align: center;
+}
+.fill{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+}
+.fill .input{
+    height: 35px;
+    width: 300px;
+    align-self: flex-end;
+}
+input, textarea {
+    right: 0;
+}
+.fill textarea{
+    width: 300px;
+    height: 100px;
+    align-self: flex-end;
 }

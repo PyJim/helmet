@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Helmet App - Sign in{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+    body {
+        padding-top: 100px;
+    }
+
+    .form-signup {
+        margin: 0 auto;
+        max-width: 400px;
+        padding: 15px;
+    }
+
+    .form-signup h2 {
+        text-align: center;
+    }
+
+    .submit-btn {
+        background-color: black;
+        max-width: 400px;
+        width: 100%;
+    }
+    .submit-btn:hover{
+        background-color: rgba(0, 0, 0, 0.637);
+    }
+
+    input {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<section id="homepage">
+
+    <div class="signup_form">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <h2>Sign in</h2>
+
+        <form action="{{ url_for("signin") }}" method="post" class="form-signup">
+            <!--- username --->
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+
+            <!--- Password --->
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+        
+            <!--- Submit --->
+            <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="Sign in">
+        </form>
+
+        <div class="create_account">
+            <p>Do not have an account?</p>
+            <a href="/signup">Create new account</a>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}

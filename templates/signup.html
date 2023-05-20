@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Helmet App - Sign up{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+    body {
+        padding-top: 150px;
+    }
+
+    .form-signup {
+        margin: 0 auto;
+        max-width: 400px;
+        padding: 15px;
+    }
+    .form-signup h2{
+        text-align: center;
+    }
+    .submit-btn{
+        background-color: black;
+        max-width: 400px;
+        width: 100%;
+    }
+    .submit-btn:hover{
+        background-color: rgba(0, 0, 0, 0.637);
+    }
+    input{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<section id="homepage">
+
+    <div class="signup_form">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        <h2>Sign Up</h2>
+        <form action="{{ url_for("signup") }}" method="post" class="form-signup">
+            <!---Full name--->
+            
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="Full Name" required>
+            </div>
+            
+            
+            <!---Username-->
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username" required>
+            </div>
+            
+            <!---Email-->
+            <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" required>
+            </div>
+            
+            <!-- Password -->
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+            
+            <!---confirm password-->
+            <div class="form-group">
+                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+            
+            <!---checkbox-->
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="">
+                    I accept the <a href="#">Terms of Use</a> & <a href="">Privacy Policy</a>
+                </label>
+            </div>
+            <!--- Submit --->
+            
+            <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="Sign Up">
+            
+        </form>
+
+        <div class="signin">
+            <p>Already have an account?</p>
+            <a href="/signin">Sign in</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
