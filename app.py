@@ -6,6 +6,7 @@ from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import urllib.request
 
+#postgres://helmet_user:tB66JRufNVQ2MzdCXKmkasCAXe5CFMRs@dpg-chl4l5m7avj2179h6sq0-a.oregon-postgres.render.com/helmet
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
@@ -211,4 +212,4 @@ def notification():
     return render_template('notification.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
