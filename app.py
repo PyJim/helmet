@@ -192,8 +192,10 @@ def user_notification():
     return render_template('notification.html')
 
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        pass
     return render_template('contact.html')
 
 @app.route('/sdg')
