@@ -220,5 +220,9 @@ def update():
 def notification():
     return render_template('notification.html')
 
+@app.route('/team')
+def team():
+    return render_template('team.html')
+
 if __name__ == '__main__':
     app.run(debug=False)
