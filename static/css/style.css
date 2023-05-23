@@ -31,12 +31,13 @@ header {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    margin-right: 250px;
+    align-items: center;
 }
 
 .Nav-links ul {
     list-style-type: none;
     display: flex;
+    align-items: center;
 }
 
 .Nav-links ul li {
@@ -102,7 +103,7 @@ header {
     font-family: "Montserrat", sans-serif;
 }
 
-.Left-side button {
+.Left-side button, .Nav-links ul li button {
     display: inline-block;
     width: 150px;
     padding: 10px;
@@ -114,8 +115,14 @@ header {
     border: none;
     cursor: pointer;
 }
+.Nav-links ul li button{
+    width: 200px;
+}
 
-.Left-side button:hover {
+#contact{
+    margin-left: 80px;
+}
+.Left-side button:hover, .Nav-links ul li button:hover {
     background-color: red;
 }
 

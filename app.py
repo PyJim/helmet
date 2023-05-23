@@ -179,9 +179,9 @@ def report(username):
     return render_template('report.html', author=find_author(username)[0])
 
 
-@app.route('/<username>/donate', methods=['GET', 'POST'])
+@app.route('/<username>/about', methods=['GET', 'POST'])
 def user_donate():
-    return render_template('donate.html')
+    return render_template('about.html')
 
 @app.route('/<username>/report', methods=['GET', 'POST'])
 def user_report():
@@ -192,21 +192,29 @@ def user_notification():
     return render_template('notification.html')
 
 
-@app.route('/disaster_watch')
-def disaster_watch():
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/sdg')
+def sdg():
+    return render_template('sdg.html')
+
+@app.route('/news')
+def news():
     return render_template('disaster_watch.html')
 
 @app.route('/statistics')
 def statistics():
     return render_template('statistics.html')
 
-@app.route('/donate')
+@app.route('/about')
 def donate():
-    return render_template('Donate.html')
+    return render_template('about.html')
 
-@app.route('/update')
+@app.route('/home')
 def update():
-    return render_template('update.html')
+    return render_template('index.html')
 
 @app.route('/notification')
 def notification():
