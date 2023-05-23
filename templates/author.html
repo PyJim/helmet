@@ -25,9 +25,7 @@
                 <li><a href="/{{author[2]}}/notification">Notification</a></li>
             </ul>
         </div>
-        <div class="filter-icon">
-            <i class="fas fa-filter"></i>
-        </div>
+        
         <div class="author">
             <h3>{{author[1]}}</h3>
         </div>
@@ -40,27 +38,28 @@
 
     <section id="homepage" class="report_container">
         <div class="report_head_container">
-            <h3 class="report_head">
-                Recent Reports
-            </h3>
+          <h3 class="report_head">
+            Recent Reports
+          </h3>
         </div>
-
+      
         <div class="all_reports">
-            {% for report in reports %}
-                <div class="report">
-                    <img src="/static/images/{{report[4]}}" alt="" class="report_image">
-                    <h3>{{report[1]}}</h3>
-                    <h5>{{report[2]}}</h5>
-                    <p>{{report[3]}}</p>
-                    <!--<img src="report[4]" alt="">-->
-                    <a href="report[5]"></a>
-                    <h5>{{report[6]}}</h5>
-                </div>
-            {% endfor %}
+          {% for report in reports %}
+          <div class="report {% if loop.index == 1 %}recent{% endif %}">
+            <img src="/static/images/{{report[4]}}" alt="" class="report_image">
+            <h3>{{report[1]}}</h3>
+            <h5>{{report[2]}}</h5>
+            <p>{{report[3]}}</p>
+            <!--<img src="report[4]" alt="">-->
+            <a href="report[5]"></a>
+            <h5>{{report[6]}}</h5>
+          </div>
+          {% endfor %}
         </div>
-
-    </section>
-    
+      
+      </section>
+      
+      
 </body>
     <script src="script.js"></script>
 

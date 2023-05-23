@@ -54,9 +54,30 @@ header {
     color: red;
 }
 
-.filter-icon {
+.signup {
     margin-right: 40px;
+    display: inline-block;
+    width: 150px;
+    padding: 10px;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bolder;
+    background-color: black; 
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center; /* Added to center the text */
 }
+
+.signup a {
+    color: white;
+    text-decoration: none;
+}
+
+.signup:hover {
+    background-color: red; /* Changes the text color to red on hover */
+}
+
 
 .author{
     margin-right: 100px;
@@ -78,9 +99,8 @@ header {
 
 .Left-side {
     text-align: left;
-    color: white;
     padding: 20px;
-    margin: 144px,494px;
+    
 }
 
 .Left-side h1 {
@@ -93,7 +113,7 @@ header {
 
 .Left-side button {
     display: inline-block;
-    width: 150px;
+    width: auto;
     padding: 10px;
     margin-right: 10px;
     color: white;
@@ -181,6 +201,7 @@ header {
 
 .report_head_container{
     margin-top: -50px;
+    float: left;
 }
 .report_form, .signin_form, .signup_form{
     position: fixed;
@@ -224,4 +245,104 @@ input, textarea {
     width: 300px;
     height: 100px;
     align-self: flex-end;
+}
+
+.author {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.author h3 {
+    color: white;
+    font-size: 16px;
+}
+
+.content {
+    padding-top: 100px;
+}
+
+.report_container {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.report_head_container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.report_head {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.all_reports {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.report {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.report:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.report_image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.report h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.report h5 {
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 5px;
+}
+
+.report p {
+    margin-bottom: 10px;
+}
+
+.report a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+}
+
+.report:hover a {
+    opacity: 1;
+}
+
+.report:hover h3,
+.report:hover h5,
+.report:hover p {
+    color: #e60000;
+}
+
+.back a {
+    color: #bb1919;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.back a:hover {
+    text-decoration: underline;
 }

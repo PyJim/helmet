@@ -4,9 +4,6 @@
 
 {% block content %}
 <section id="homepage">
-    <div class="signup">
-        <a href="/signup">SIGNUP</a>
-    </div>
     <div class="Left-side">
         <h1>Get Latest Information <br>
              On Disasters <br> Across The Globe
@@ -14,8 +11,6 @@
         <a href="{{ url_for('disaster_watch') }}"><button>DISASTER WATCH</button></a>
         <a href="{{ url_for('statistics') }}"><button>STATISTICS</button></a>
     </div>
-    <div class="map">
-        <img src="static\images\Map.png" alt="map">
-    </div>
+    
 </section>
 {% endblock %}
