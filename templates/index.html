@@ -3,15 +3,15 @@
 {% block title %}Helmet App - Home{% endblock %}
 
 {% block content %}
-<section id="homepage">
-    <div class="signup">
-        <a href="/signup">SIGNUP</a>
-    </div>
+<section id="index-homepage">
+    
     <div class="Left-side">
         <h1>Get Latest Information <br>
              On Disasters <br> Across The Globe
         </h1>
-        <a href="{{ url_for('disaster_watch') }}"><button>DISASTER WATCH</button></a>
+        
+        <a href="/signup"><button>SIGN UP</button></a>
+        <a href="{{ url_for('disaster_watch') }}"><button>NEWS</button></a>
         <a href="{{ url_for('statistics') }}"><button>STATISTICS</button></a>
     </div>
     <div class="map">

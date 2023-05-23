@@ -109,6 +109,7 @@ def signin():
             correct_password = bcrypt.check_password_hash(author[4], password)
             if correct_password:
                 #return render_template('author.html', author=author, reports=reports)
+                flash('Signed in successfully')
                 return redirect(f'/author/{username}')
             else:
                 message = 'incorrect password'

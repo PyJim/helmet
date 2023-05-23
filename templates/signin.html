@@ -39,11 +39,20 @@
     <div class="signup_form">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                    <li>{{message}}</li>
-                    {% endfor %}
-                </ul>
+                {% if 'successfully' in messages %}
+                    <ul class="flash">
+                        {% for message in messages %}
+                        <li class="flash-message">{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <ul class="flash">
+                        {% for message in messages %}
+                        <li class="flash-message-green">{{message}}</li>
+                        {% endfor %}
+                    </ul>
+
+                {% endif %}
             {% endif %}
         {% endwith %}
 
