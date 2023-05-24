@@ -73,7 +73,8 @@ header {
 #report-homepage, 
 #index-homepage,
 #about-homepage, 
-#contact-homepage{
+#contact-homepage,
+#mission-homepage{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -83,16 +84,24 @@ header {
     position: relative;
 }
 
+#footer{
+    margin-top: 6%;
+}
+
 #report-homepage,
 #about-homepage{
-    margin-top: 15%;
+    margin-top: 10%;
     display: flex;
     flex-direction: column;
 }
+#mission-homepage{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2%;
+}
 #team-homepage{
-    margin-top: 6%;
+    margin-top: 4%;
     color: #000;
-    margin-bottom: 6%;
 }
 #index-homepage{
     margin-top: 15%;
