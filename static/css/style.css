@@ -152,7 +152,7 @@ header {
 .Left-side button:hover, 
 .Nav-links ul li button:hover, 
 .read-more:hover, 
-.contact-form-btn {
+.contact-form-btn:hover {
     background-color: red;
 }
 
