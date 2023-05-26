@@ -902,10 +902,6 @@ article h2 {
     font-weight: bold;
   }
 
-  #report_container .card:first-child .intro {
-    height: 120px;
-  }
-
   #report_container .card:first-child .intro h1 {
     font-size: 40px;
   }
@@ -930,6 +926,10 @@ article h2 {
     overflow: hidden;
   }
 
+  #report_container .card:first-child:hover .intro {
+    height: 70%;
+  }
+
   .card:hover .intro p{
     opacity: 1;
     visibility: visible;
@@ -943,9 +943,4 @@ article h2 {
 
   .card:hover .intro h3{
     visibility: hidden;
-  }
-
-  #report_container .card:first-child .intro p {
-    height: auto;
-    max-height: 70%;
   }

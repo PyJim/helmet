@@ -190,19 +190,19 @@ def report(username):
 
 
 @app.route('/<username>/about', methods=['GET', 'POST'])
-def about():
+def user_about(username):
     return render_template('about.html')
 
 @app.route('/<username>/home', methods=['GET', 'POST'])
-def home():
+def home(username):
     return render_template('about.html')
 
 @app.route('/<username>/report', methods=['GET', 'POST'])
-def user_report():
+def user_report(username):
     return render_template('report.html')
 
 @app.route('/<username>/notification', methods=['GET', 'POST'])
-def user_notification():
+def user_notification(username):
     return render_template('notification.html')
 
 
@@ -225,7 +225,7 @@ def statistics():
     return render_template('statistics.html')
 
 @app.route('/about')
-def donate():
+def about():
     return render_template('about.html')
 
 @app.route('/home')
