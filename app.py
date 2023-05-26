@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, g, redirect, flash
-from queries import signup_empty, get_author_reports, signin_empty, PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, add_report, get_all_reports
+from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, add_report, get_all_reports
 import os
 from flask_bcrypt import Bcrypt
 from flask import Flask, render_template, request
@@ -46,10 +46,16 @@ def signup():
             message = 'please fill all available'
             flash(message)
             return redirect(request.url)"""
-
+        if name and name.strip():  # Check if name is not None or empty
+            name = name.strip().capitalize()
+        else:
+            message = 'Please enter a valid name'
+            flash(message)
+            return redirect(request.url)
+        
         user_password = PasswordCheck(password, confirm_password)
         user_email = EmailCheck(email)
-
+        
         if user_password.mismatch():
             message = 'password mismatch'
             flash(message)
@@ -81,8 +87,7 @@ def signup():
             return redirect(request.url)
         else:
             password = bcrypt.generate_password_hash(password).decode('utf-8')
-            create_author(name.capitalize(), username,
-                        email, password)
+            create_author(name.strip().capitalize(), username, email, password)
             create_author_reports(username)
             message = f'Account created successfully'
             flash(message)
@@ -126,8 +131,9 @@ def signin():
 def author_home(username):
     reports = []
     all_reports = get_all_reports()
-    for report in all_reports:
-        reports.append(list(report))
+    if all_reports:
+        for report in all_reports:
+            reports.append(list(report))
     
     """author_rep = []
     author_reports = get_author_reports(username)
@@ -161,7 +167,7 @@ def report(username):
             return redirect(request.url)
         
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filename = secure_filename(str(file.filename))
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             flash('Image successfully uploaded')
@@ -175,12 +181,20 @@ def report(username):
             flash('Allowed image types are - png, jpg, jpeg and gif')
             return redirect(request.url)
 
-
-    return render_template('report.html', author=find_author(username)[0])
+    author = find_author(username)
+    if author:
+        return render_template('report.html', author=author[0])
+    else:
+        flash('No such user')
+        return redirect('/signup')
 
 
 @app.route('/<username>/about', methods=['GET', 'POST'])
-def user_donate():
+def about():
+    return render_template('about.html')
+
+@app.route('/<username>/home', methods=['GET', 'POST'])
+def home():
     return render_template('about.html')
 
 @app.route('/<username>/report', methods=['GET', 'POST'])
