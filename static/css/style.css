@@ -94,6 +94,11 @@ header {
     display: flex;
     flex-direction: column;
 }
+
+#report-homepage .report_container{
+    display: flex;
+    flex-direction: row;
+}
 #mission-homepage{
     display: flex;
     flex-direction: column;
@@ -820,4 +825,127 @@ article h2 {
     position: absolute;
     white-space: nowrap; 
     width: 1px;
+  }
+  
+  #report_homepage{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background: whitesmoke;
+    align-items: center;
+  }
+
+  #report_container{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto;
+    grid-gap: 5px;
+
+  }
+
+  #report_container .card:first-child,
+  #report_container .card:first-child img{
+    height: 570px;
+    width: 690px;
+    grid-area: 1 / 1 / span 2 / span 2;
+  }
+
+  .card{
+    height: 273px;
+    width: 345px;
+    overflow: hidden;
+    margin: 8px;
+    border-radius: 0px;
+  }
+  .card img{
+    height: 273px;
+    width: 345px;
+    transition: .5s;
+    filter: brightness(50%)
+  }
+
+  .intro{
+    height: 80px;
+    width: 308.5px;
+    padding: 6px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 20%;
+    left: 3%;
+    /*background: rgb(27, 27, 27, .5);*/
+    color: white;
+    transition: .5s;
+  }
+
+  .intro h1{
+    font-size: 25px;
+  }
+
+  .intro h3{
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  .intro h3 span{
+    color: red;
+    font-size: 20px;
+  }
+
+  .intro p{
+    font-size: 18px;
+    margin: 20px;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .intro span{
+    font-weight: bold;
+  }
+
+  #report_container .card:first-child .intro {
+    height: 120px;
+  }
+
+  #report_container .card:first-child .intro h1 {
+    font-size: 40px;
+  }
+
+  #report_container .card:first-child .intro h3 {
+    font-size: 28px;
+  }
+
+  #report_container .card:first-child .intro span {
+    font-size: 40px
+  }
+
+  .card:hover{
+    cursor: pointer;
+  }
+
+  .card:hover .intro{
+    height: auto;
+    max-height: 240px;
+    bottom: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+  }
+
+  .card:hover .intro p{
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .card:hover img{
+    transform: scale(1.1) rotate(-3deg);
+    opacity: 1;
+    filter: brightness(100%);
+  }
+
+  .card:hover .intro h3{
+    visibility: hidden;
+  }
+
+  #report_container .card:first-child .intro p {
+    height: auto;
+    max-height: 70%;
   }
