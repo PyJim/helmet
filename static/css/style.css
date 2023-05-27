@@ -195,7 +195,7 @@ header {
 }
 
 .report-home{
-    margin-top: 15%;
+    margin-top: 0%;
 }
 /* CSS styles for the statistics section */
 #statistics {
@@ -470,14 +470,18 @@ footer {
     margin: 20px auto;
 }
 
-.heading h1, .team-section h1{
+.heading h1,
+.report_head,
+.team-section h1{
     font-size: 50px;
     color: #000;
     margin-bottom: 25px;
     position: relative;
 }
 
-.heading h1::after, .team-section h1::after{
+.heading h1::after, 
+.team-section h1::after,
+.report_head::after{
     content: "";
     position: absolute;
     width: 100%;
@@ -845,28 +849,29 @@ article h2 {
 
   #report_container .card:first-child,
   #report_container .card:first-child img{
-    height: 570px;
-    width: 690px;
+    height: 524px;
+    width: 600px;
     grid-area: 1 / 1 / span 2 / span 2;
   }
 
   .card{
-    height: 273px;
-    width: 345px;
+    height: 250px;
+    width: 300px;
     overflow: hidden;
     margin: 8px;
     border-radius: 0px;
   }
   .card img{
-    height: 273px;
-    width: 345px;
+    height: 250px;
+    width: 300px;
     transition: .5s;
     filter: brightness(50%)
   }
 
   .intro{
     height: 80px;
-    width: 308.5px;
+    width: auto;
+    max-width: 80%;
     padding: 6px;
     box-sizing: border-box;
     position: absolute;
@@ -893,7 +898,7 @@ article h2 {
 
   .intro p{
     font-size: 18px;
-    margin: 20px;
+    margin: 0 20px 20px 20px;
     visibility: hidden;
     opacity: 0;
   }
@@ -914,20 +919,29 @@ article h2 {
     font-size: 40px
   }
 
+  .report_head{
+    margin-top: 5%;
+  }
+
   .card:hover{
     cursor: pointer;
   }
 
   .card:hover .intro{
     height: auto;
-    max-height: 240px;
+    max-height: 70%;
+    max-width: 80%;
+    width: auto;
     bottom: 10px;
     background: rgba(0, 0, 0, 0.7);
     overflow: hidden;
   }
 
   #report_container .card:first-child:hover .intro {
-    height: 70%;
+    max-height: 70%;
+    height: auto;
+    max-width: 80%;
+    width: auto;
   }
 
   .card:hover .intro p{
@@ -935,6 +949,9 @@ article h2 {
     visibility: visible;
   }
 
+  .card:hover .intro h1{
+    margin-left: 20px;
+  }
   .card:hover img{
     transform: scale(1.1) rotate(-3deg);
     opacity: 1;

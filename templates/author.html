@@ -28,7 +28,7 @@
             <ul>
                 <li><a href="/{{author[2]}}/home">Home</a></li>
                 <li><a href="/{{author[2]}}/report">Report</a></li>
-                <li><a href="/{{author[2]}}/about">About</a></li>
+                <li><a href="/{{author[2]}}/myposts">My Posts</a></li>
                 <li><a href="/{{author[2]}}/notification">Notification</a></li>
             </ul>
         </div>
@@ -43,37 +43,38 @@
         {% endblock %}
     </div>
 
-    
-    <section id="report-homepage">
-        <div class="report_head_container">
-            <h3 class="report_head">
-                Recent Reports
-            </h3>
-        </div>
+    {% if not hide_session %}
+        <section id="report-homepage">
+            <div class="report_head_container">
+                <h3 class="report_head">
+                    Recent Reports
+                </h3>
+            </div>
 
-        <div id="report_container">
-            {% for report in reports %}
-                <div class="card">
-                    {% if report[4] == '' %}
-                        <img src="/static/images/preserve.jpeg" alt="">
-                    {% else %}
-                        <img src="/static/images/{{report[4]}}" alt="">
-                    {% endif %}
+            <div id="report_container">
+                {% for report in reports %}
+                    <div class="card">
+                        {% if report[4] == '' %}
+                            <img src="/static/images/preserve.jpeg" alt="">
+                        {% else %}
+                            <img src="/static/images/{{report[4]}}" alt="">
+                        {% endif %}
 
-                    <div class="intro">
-                        <h1>{{report[1]}}</h1>
-                        <h3><span>&#10074;</span> {{report[2]}}</h3>
-                        <p>{{report[3]}}</p>
-                        <!--<img src="report[4]" alt="">-->
-                        <!--<a href="report[5]"></a>-->
-                        <!--<h5>{{report[6]}}</h5>-->
+                        <div class="intro">
+                            <h1>{{report[1]}}</h1>
+                            <h3><span>&#10074;</span> {{report[2]}}</h3>
+                            <p>{{report[3]}}</p>
+                            <!--<img src="report[4]" alt="">-->
+                            <!--<a href="report[5]"></a>-->
+                            <!--<h5>{{report[6]}}</h5>-->
+                        </div>
                     </div>
-                </div>
-                
-            {% endfor %}
-        </div>
+                    
+                {% endfor %}
+            </div>
 
-    </section>
+        </section>
+    {% endif %}
 
     <section id="footer">
         <footer>

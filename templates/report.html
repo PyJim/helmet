@@ -1,5 +1,5 @@
 {% extends 'author.html' %}
-
+{% set hide_session = True %}
 {% block title %}Helmet App - Report{% endblock %}
 
 {% block content %}
@@ -20,21 +20,34 @@
     }
 
     .submit-btn, .img-btn {
-        background-color: black;
-        max-width: 400px;
+        display: inline-block;
         width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        margin-right: 10px;
+        color: white;
+        font-family: "Montserrat", sans-serif;
+        font-weight: bolder;
+        background-color: black;
+        border: none;
+        cursor: pointer;
+        border-radius: 0%;
+    
     }
+
     .img-btn{
+        padding-left: 15px;
         background-color: white;
-    }
-    .img-btn:hover{
-        background-color: white;
+        color: #000;
     }
 
     .submit-btn:hover {
-        background-color: rgba(0, 0, 0, 0.637);
+        background-color: red;
     }
 
+    textarea{
+        height: 150px;
+    }
     input {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -63,7 +76,7 @@
         
             <!---location-->
             <div class="form-group">
-                <input type="text" class="form-control" name="location" placeholder="Location" required>
+                <input type="text" class="form-control" name="location" placeholder="Affected Locality" required>
             </div>
         
             <!---description-->

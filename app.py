@@ -189,13 +189,13 @@ def report(username):
         return redirect('/signup')
 
 
-@app.route('/<username>/about', methods=['GET', 'POST'])
+@app.route('/<username>/myposts', methods=['GET', 'POST'])
 def user_about(username):
     return render_template('about.html')
 
 @app.route('/<username>/home', methods=['GET', 'POST'])
 def home(username):
-    return render_template('about.html')
+    return redirect(f'/author/{username}')
 
 @app.route('/<username>/report', methods=['GET', 'POST'])
 def user_report(username):

@@ -19,18 +19,34 @@
         text-align: center;
     }
 
-    .submit-btn {
-        background-color: black;
-        max-width: 400px;
+    .submit-btn{
+        display: inline-block;
         width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        margin-right: 10px;
+        color: white;
+        font-family: "Montserrat", sans-serif;
+        font-weight: bolder;
+        background-color: black;
+        border: none;
+        cursor: pointer;
+        border-radius: 0%;
     }
     .submit-btn:hover{
-        background-color: rgba(0, 0, 0, 0.637);
+        background-color: red;
     }
 
-    input {
+    input, .form-control {
         margin-top: 10px;
         margin-bottom: 10px;
+        border-radius: 0%;
+        width: 100%;
+        max-width: 400px;
+    }
+    .form-control{
+        width: 306.5px;
+        max-width: 400px;
     }
 </style>
 
@@ -74,8 +90,7 @@
         </form>
 
         <div class="create_account">
-            <p>Do not have an account?</p>
-            <a href="/signup">Create new account</a>
+            <p>Do not have an account? <span><a href="/signup">Create new account</a></span></p>
         </div>
     </div>
 
