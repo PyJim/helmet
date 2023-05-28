@@ -32,29 +32,33 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.Nav-links ul {
+  }
+  
+  .Nav-links ul {
     list-style-type: none;
     display: flex;
     align-items: center;
-}
-
-.Nav-links ul li {
+  }
+  
+  .Nav-links ul li {
     margin-right: 20px;
     padding: 20px;
-}
-
-.Nav-links ul li a, .author h3, .report_head {
+  }
+  
+  .Nav-links ul li a,
+  .author h3,
+  .report_head {
     color: black;
     text-decoration: none;
     font-size: 24px;
     font-family: "Hind Kochi", sans-serif;
-}
-
-.Nav-links ul li a:hover {
+  }
+  
+  .Nav-links ul li a:hover,
+  .Nav-links ul li.active a {
     color: red;
-}
+  }
+  
 
 .filter-icon {
     margin-right: 40px;
@@ -961,96 +965,110 @@ article h2 {
   .card:hover .intro h3{
     visibility: hidden;
   }
-
-  .event-container {
-    font-family: "Roboto", sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
+  @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+  @import url("https://fonts.googleapis.com/css?family=Varela+Round");
+  
+  @font-face {
+    font-family: 'Telefon Black';
+    src: url('https://raw.githubusercontent.com/arnabmunshi/fontface/master/TelefonBlack/Telefon-Black.woff2') format('woff2'), url('https://raw.githubusercontent.com/arnabmunshi/fontface/master/TelefonBlack/Telefon-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
   }
   
-  .event-container h3.year {
-    font-size: 40px;
-    text-align: center;
-    border-bottom: 1px solid #b1b1b1;
+  .page-event {
+    background-color: #212121;
+    padding-bottom: 40px;
+    padding-top: 50px;
+    font-family: "Varela Round", sans-serif;
+    margin: 40px;
+    padding: 40px;
   }
   
-  .event-container .event {
-    box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.4);
-    display: flex;
-    border-radius: 8px;
-    margin: 32px 0;
+  .page-event .cover {
+    background-color: rgb(54, 53, 58);
+    height: 360px;
+    background-image: url('https://goo.gl/NA3iQP');
+    background-position: center center;
+    background-size: cover;
   }
   
-  .event .event-left {
-    background: #222;
-    min-width: 82px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #eee;
-    padding: 8px 48px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 8px 0 0 8px;
-  }
-  
-  .event .event-left .date {
-    font-size: 56px;
-  }
-  
-  .event .event-left .month {
-    font-size: 16px;
-    font-weight: normal;
-  }
-  
-  .event .event-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 24px;
-  }
-  
-  .event .event-right h3.event-title {
-    font-size: 24px;
-    margin: 24px 0 10px 0;
-    color: #218bbb;
+  .page-event .cover .heading {
+    font-family: 'Telefon Black';
+    font-size: 243px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #ccc;
+    transition: font-size 0.3s;
   }
   
-  .event .event-right .event-timing {
-    background: #fff8ba;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100px;
-    padding: 8px;
-    border-radius: 16px;
-    margin: 24px 0;
-    font-size: 14px;
+  .page-event .cover .heading::first-letter {
+    color: #ffffff;
   }
   
-  .event .event-right .event-timing img {
-    height: 20px;
-    padding-right: 8px;
+  .page-event .upcoming-sec {
+    padding: 5vh 0;
+    border-bottom: 1px solid #ccc;
   }
   
-  @media (max-width: 550px) {
-    .event {
-      flex-direction: column;
-    }
-  
-    .event .event-left {
-      padding: 0;
-      border-radius: 8px 8px 0 0;
-    }
-  
-    .event .event-left .event-date .date,
-    .event .event-left .event-date .month {
-      display: inline-block;
-      font-size: 24px;
-    }
-  
-    .event .event-left .event-date {
-      padding: 10px 0;
-    }
+  .page-event .upcoming-sec .heading {
+    font-size: 30px;
+    color: #fff;
   }
+  
+  .page-event .upcoming-event-list {
+    color: #ccc;
+  }
+  
+  .page-event .upcoming-event-list .event-block {
+    padding: 5vh 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .page-event .upcoming-event-list .event-block .sec-1,
+  .page-event .upcoming-event-list .event-block .sec-2 {
+    padding-bottom: 3vh;
+  }
+  
+  .page-event .upcoming-event-list .event-block .sec-1 table .month {
+    text-transform: uppercase;
+    color: #ffffff;
+    font-size: 30px;
+  }
+  
+  .page-event .upcoming-event-list .event-block .sec-1 table .month-date-devider {
+    width: 5vh;
+    margin: 1vh 0;
+    background-color: #ffffff;
+    height: 5px;
+  }
+  
+  .page-event .upcoming-event-list .event-block .sec-1 table .date {
+    font-size: 60px;
+    font-weight: bolder;
+    line-height: normal;
+  }
+  
+  .page-event .upcoming-event-list .event-block .sec-1 table .title {
+    padding-left: 20px;
+    vertical-align: top;
+    font-size: 30px;
+  }
+  
+  .page-event .upcoming-event-list .event-block .sec-2 img {
+    width: 100%;
+    padding: 40px;
+  }
+  
+  .page-event .upcoming-event-list .event-block .sec-3 .title {
+    font-size: 30px;
+    padding-bottom: 2vh;
+  }
+  
+  .page-event .upcoming-event-list .event-block .sec-3 .venue table td {
+    vertical-align: top;
+  }
+  
+  
