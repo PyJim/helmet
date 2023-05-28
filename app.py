@@ -201,7 +201,7 @@ def home(username):
 def user_report(username):
     return render_template('report.html')
 
-@app.route('/<username>/notification', methods=['GET', 'POST'])
+@app.route('/<username>/event', methods=['GET', 'POST'])
 def user_notification(username):
     return render_template('notification.html')
 
@@ -232,9 +232,9 @@ def about():
 def update():
     return render_template('index.html')
 
-@app.route('/notification')
-def notification():
-    return render_template('notification.html')
+@app.route('/event')
+def event():
+    return render_template('event.html')
 
 @app.route('/team')
 def team():
