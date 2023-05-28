@@ -769,12 +769,14 @@ article h2 {
   .sdgs{
     display: flex;
     align-self: center;
+    
   }
 
   .sdgs img{
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    padding: 8px;
   }
 
   .sdgs img:hover{
