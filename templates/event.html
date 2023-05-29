@@ -1,0 +1,66 @@
+<!-- event.html -->
+{% extends 'base.html' %}
+
+{% block title %}Helmet App - Event{% endblock %}
+
+{% block content %}
+<div class="page-event">
+    <div class="container">
+      <div class="upcoming-sec">
+        <div class="heading">Upcoming Events</div>
+      </div>
+      <div class="upcoming-event-list">
+        <div class="event-block">
+          <div class="row">
+            <div class="col-lg-2 sec-1">
+              <table>
+                <tr>
+                  <td>
+                    <div class="month">jun</div>
+                    <div class="month-date-devider"></div>
+                    <div class="date">27</div>
+                  </td>
+                  <td class="title">Community Cleaning</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-lg-5 sec-2">
+              <img src="https://cdn.ghanaweb.com/imagelib/pics/764/76422776.jpg" />
+            </div>
+            <div class="col-lg-5 sec-3">
+              <div class="title">Cleaning At Kasoa Durbur Ground</div>
+              <div class="venue">
+                <table>
+                  <tr>
+                    <td><i class="fa fa-map-marker"></i></td>
+                    <td>
+                      <div>Ofori Ampong</div>
+                      <div class="dim-color">
+                        <a href="https://www.google.co.in" target="blank">Get Directions</a>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="time">
+                <table>
+                  <tr>
+                    <td><i class="fa fa-clock-o"></i></td>
+                    <td>
+                      <div>Saturday, Jun 27, 2023 at 5:30 PM</div>
+                      <div data-livestamp="1517054400" class="dim-color"></div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="sort-story">"Join the community lets clean up the environment for the health of our children" - Joe</div>
+              <div class="group-of-btn">
+                <a href="https://www.google.com" target="blank" class="btn book-ticket">Register</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
