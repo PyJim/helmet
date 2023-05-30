@@ -16,15 +16,15 @@
                 <img src="{{ url_for('static', filename='images/Logo.png') }}" alt="Logo">
             </a>
         </div>
-       <div class="Nav-links">
-  <ul>
-    <li {% if request.path == '/home' %}class="active"{% endif %}><a href="/home">Home</a></li>
-    <li {% if request.path == '/about' %}class="active"{% endif %}><a href="/about">About</a></li>
-    <li {% if request.path == '/event' %}class="active"{% endif %}><a href="/event">Events</a></li>
-    <li {% if request.path == '/sdg' %}class="active"{% endif %}><a href="/sdg">SDG Informant</a></li>
-    <li id="contact"><a href="/contact"><button>Contact Us</button></a></li>
-  </ul>
-</div>
+        <div class="Nav-links">
+            <ul>
+                <li {% if request.path == '/home' %}class="active"{% endif %}><a href="/home">Home</a></li>
+                <li {% if request.path == '/about' %}class="active"{% endif %}><a href="/about">About</a></li>
+                <li {% if request.path == '/event' %}class="active"{% endif %}><a href="/event">Events</a></li>
+                <li {% if request.path == '/faq' %}class="active"{% endif %}><a href="/faq">FAQs</a></li>
+                <li id="contact"><a href="/contact"><button>Contact Us</button></a></li>
+            </ul>
+        </div>
 
     </header>
     <div class="content">

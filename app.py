@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, g, redirect, flash
-from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, add_report, get_all_reports
+from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, add_report, get_all_reports, get_author_reports
 import os
 from flask_bcrypt import Bcrypt
 from flask import Flask, render_template, request
@@ -188,10 +188,26 @@ def report(username):
         flash('No such user')
         return redirect('/signup')
 
+@app.route('/<username>/events', methods=['GET', 'POST'])
+def user_events(username):
+    author = find_author(username)
+    if author:
+        author = author[0]
+    return render_template('event.html', user=username, author=author)
 
 @app.route('/<username>/myposts', methods=['GET', 'POST'])
-def user_about(username):
-    return render_template('about.html')
+def user_posts(username):
+    reports = []
+    all_user_reports = get_author_reports(username)
+    if all_user_reports:
+        for report in all_user_reports:
+            reports.append(list(report))
+    
+    author = find_author(username)
+    if author:
+        author = author[0]
+    return render_template('posts.html', reports=reports, author=author)
+
 
 @app.route('/<username>/home', methods=['GET', 'POST'])
 def home(username):
@@ -212,9 +228,9 @@ def contact():
         pass
     return render_template('contact.html')
 
-@app.route('/sdg')
+@app.route('/faq')
 def sdg():
-    return render_template('sdg.html')
+    return render_template('faq.html')
 
 @app.route('/news')
 def news():

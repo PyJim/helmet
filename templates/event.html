@@ -1,9 +1,32 @@
 <!-- event.html -->
-{% extends 'base.html' %}
+{% if user %}
+  {% extends 'author.html' %}
+  {% set hide_session = True %}
+
+{% else %}
+  {% extends 'base.html' %}
+
+{% endif %}
 
 {% block title %}Helmet App - Event{% endblock %}
 
 {% block content %}
+
+
+<section id="create_new_event">
+  <form action="" class="search-bar">
+    <input type="text" placeholder="search" name="q">
+    <button type="submit"><img src="/static/images/search.png" alt=""></button>
+  </form>
+
+  {% if user %}
+    <div class="create_event">
+      <a href="#" id="create-event-btn"><button>Create Event</button></a>
+    </div>
+  {% endif %}
+</section>
+
+
 <div class="page-event">
     <div class="container">
       <div class="upcoming-sec">
@@ -63,4 +86,5 @@
       </div>
     </div>
   </div>
+
 {% endblock %}
