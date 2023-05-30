@@ -45,7 +45,7 @@
 
     {% if not hide_session %}
         <section class="search_container">
-            <form action="" class="search-bar">
+            <form action="{{ url_for("author_home", username=author[2]) }}" method="post" class="search-bar">
                 <input type="text" placeholder="search" name="q">
                 <button type="submit"><img src="/static/images/search.png" alt=""></button>
             </form>

@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, g, redirect, flash
-from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, add_report, get_all_reports, get_author_reports
+from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, add_report, get_all_reports, get_author_reports, addEvent, searchEvents,allEvents, searchPosts
 import os
 from flask_bcrypt import Bcrypt
 from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 import urllib.request
+from datetime import datetime
 
 #postgres://helmet_user:tB66JRufNVQ2MzdCXKmkasCAXe5CFMRs@dpg-chl4l5m7avj2179h6sq0-a.oregon-postgres.render.com/helmet
 
@@ -127,10 +128,15 @@ def signin():
         
     return render_template('signin.html')
 
-@app.route('/author/<username>')
+@app.route('/author/<username>', methods=['GET', 'POST'])
 def author_home(username):
     reports = []
     all_reports = get_all_reports()
+
+    if request.method == 'POST':
+        phrase = request.form.get('q')
+        all_reports = searchPosts(phrase)
+    
     if all_reports:
         for report in all_reports:
             reports.append(list(report))
@@ -190,10 +196,19 @@ def report(username):
 
 @app.route('/<username>/events', methods=['GET', 'POST'])
 def user_events(username):
+    current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(current_datetime)
+    events = allEvents(current_datetime)
     author = find_author(username)
     if author:
         author = author[0]
-    return render_template('event.html', user=username, author=author)
+
+    if request.method == 'POST':
+        phrase = request.form.get('q')
+        date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        events = searchEvents(phrase, date_time)
+
+    return render_template('event.html', user=username, author=author, events=events)
 
 @app.route('/<username>/myposts', methods=['GET', 'POST'])
 def user_posts(username):
@@ -217,9 +232,38 @@ def home(username):
 def user_report(username):
     return render_template('report.html')
 
-@app.route('/<username>/event', methods=['GET', 'POST'])
-def user_notification(username):
-    return render_template('notification.html')
+@app.route('/<username>/add_event', methods=['GET', 'POST'])
+def add_event(username):
+    if request.method == 'POST':
+        # title, date, time, desc, org, loc, story, image
+        title = request.form.get('title')
+        date_time = request.form['datetime']
+        desc = request.form.get('desc')
+        org = request.form.get('organizer')
+        loc = request.form.get('location')
+
+        if 'file' not in request.files:
+            flash('No file chosen')
+            return redirect(request.url)
+
+        file = request.files['file']
+
+        if file.filename == '':
+            flash('No image selected')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(str(file.filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            flash('Image successfully uploaded')
+            addEvent(title, date_time, desc, org, loc, filename)
+            
+            flash('Event added successfully')
+            return redirect(request.url)
+
+    return render_template('add_event.html')
+
 
 
 @app.route('/contact', methods=['GET', 'POST'])
@@ -248,8 +292,10 @@ def about():
 def update():
     return render_template('index.html')
 
-@app.route('/event')
+@app.route('/event', methods=['GET', 'POST'])
 def event():
+    if request.method == 'POST':
+        pass
     return render_template('event.html')
 
 @app.route('/team')

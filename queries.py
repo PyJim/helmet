@@ -93,3 +93,26 @@ def add_report(username, title, location, description, image, video):
     connection.execute(query, [title, location, description, image, video, username])
     connection.commit()
     connection.close()
+
+def searchEvents(phrase, datetime):
+    query = """SELECT * FROM EVENTS WHERE Title LIKE ? AND Datetime >= ?"""
+    result = db_query(query, [phrase, datetime])
+    return result
+
+def allEvents(date):
+    query = """SELECT * FROM EVENTS WHERE Datetime >= ?"""
+    result = db_query(query, [date])
+    return result
+
+def searchPosts(phrase):
+    query = """SELECT * FROM REPORT WHERE Title LIKE ?"""
+    result = db_query(query, [phrase])
+    return result
+
+def addEvent(title, date_time, desc, org, loc, image):
+    connection = sqlite3.connect('database.db')
+    query = """INSERT INTO EVENTS (Title, Datetime, Desc, Organizer, Loc, Img) VALUES (?, ?, ?, ?, ?, ?);"""
+    connection.execute(query, [title, date_time, desc, org, loc, image])
+    connection.commit()
+    connection.close()
+    

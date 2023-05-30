@@ -1,0 +1,115 @@
+{% extends 'author.html' %}
+{% set hide_session = True %}
+{% block title %}Helmet App - Add Event{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+    body {
+        padding-top: 150px;
+    }
+
+    .form-signup {
+        margin: 0 auto;
+        max-width: 400px;
+        padding: 15px;
+    }
+
+    .form-signup h2 {
+        text-align: center;
+    }
+
+    .submit-btn, .img-btn {
+        display: inline-block;
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        margin-right: 10px;
+        color: white;
+        font-family: "Montserrat", sans-serif;
+        font-weight: bolder;
+        background-color: black;
+        border: none;
+        cursor: pointer;
+        border-radius: 0%;
+    
+    }
+
+    .img-btn{
+        padding-left: 15px;
+        background-color: white;
+        color: #000;
+    }
+
+    .submit-btn:hover {
+        background-color: red;
+    }
+
+    textarea{
+        height: 150px;
+    }
+    input {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<section id="homepage" class="report-home">
+    <div class="signup_form">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash">
+                    {% for message in messages %}
+                        <li class="flash-message">{{message}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <h2>Schedule an Event</h2>
+        
+        <form action="{{ url_for("add_events", username=author[2]) }}" method="post" enctype="multipart/form-data" class="form-signup">
+            <!---Title--->
+            <div class="form-group">
+                <input type="text" class="form-control" name="title" placeholder="Title" required>
+            </div>
+        
+            <!---location-->
+            <div class="form-group">
+                <input type="datetime-local" class="form-control" name="datetime" placeholder="Date" required>
+            </div>
+
+
+            <!---description-->
+            <div class="form-group">
+                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+            </div>
+            
+            <!---organizer--->
+            <div class="form-group">
+                <input type="text" class="form-control" name="organizer" placeholder="Organizer" required>
+            </div>
+        
+            <!---location-->
+            <div class="form-group">
+                <input type="text" class="form-control" name="location" placeholder="Location">
+            </div>
+
+            <!-- image -->
+            <div class="form-group">
+                <input type="file" class="form-control btn-success btn-block img-btn" name="file" value="Image" autocomplete="off"
+                    required>
+            </div>
+        
+            <!--- Submit --->
+            <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="Save">
+        
+        </form>
+        
+        <div class="back">
+            <a href="/author/{{author[2]}}">Back to home</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
