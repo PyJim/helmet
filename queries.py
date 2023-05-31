@@ -1,7 +1,7 @@
 from helper import db_execute, db_query
 import sqlite3
 from flask import render_template, redirect
-
+from datetime import datetime
 
 def signup_empty(name, username, email, password, confirm_password):
     first = name == ''
@@ -110,9 +110,13 @@ def searchPosts(phrase):
     return result
 
 def addEvent(title, date_time, desc, org, loc, image):
+    date_time = datetime.strptime(date_time, '%Y-%m-%dT%H:%M')
+    month = date_time.strftime("%b")
+    date_string = f'{date_time.strftime("%d %B, %Y")} {date_time.strftime("%I:%M %p")}'
+
     connection = sqlite3.connect('database.db')
-    query = """INSERT INTO EVENTS (Title, Datetime, Desc, Organizer, Loc, Img) VALUES (?, ?, ?, ?, ?, ?);"""
-    connection.execute(query, [title, date_time, desc, org, loc, image])
+    query = """INSERT INTO EVENTS (Title, Datetime, Desc, Organizer, Loc, Img, Month, Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);"""
+    connection.execute(query, [title, date_time, desc, org, loc, image, month, date_string])
     connection.commit()
     connection.close()
     

@@ -135,7 +135,8 @@ def author_home(username):
 
     if request.method == 'POST':
         phrase = request.form.get('q')
-        all_reports = searchPosts(phrase)
+        if phrase != '':
+            all_reports = searchPosts(phrase)
     
     if all_reports:
         for report in all_reports:
@@ -197,7 +198,6 @@ def report(username):
 @app.route('/<username>/events', methods=['GET', 'POST'])
 def user_events(username):
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    print(current_datetime)
     events = allEvents(current_datetime)
     author = find_author(username)
     if author:
@@ -205,10 +205,26 @@ def user_events(username):
 
     if request.method == 'POST':
         phrase = request.form.get('q')
-        date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        events = searchEvents(phrase, date_time)
+        if phrase != '':
+            date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            events = searchEvents(phrase, date_time)
 
     return render_template('event.html', user=username, author=author, events=events)
+
+
+@app.route('/event', methods=['GET', 'POST'])
+def event():
+    current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    events = allEvents(current_datetime)
+
+    if request.method == 'POST':
+        phrase = request.form.get('q')
+        if phrase != '':
+            date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            events = searchEvents(phrase, date_time)
+
+    return render_template('event.html', events=events)
+
 
 @app.route('/<username>/myposts', methods=['GET', 'POST'])
 def user_posts(username):
@@ -238,7 +254,7 @@ def add_event(username):
         # title, date, time, desc, org, loc, story, image
         title = request.form.get('title')
         date_time = request.form['datetime']
-        desc = request.form.get('desc')
+        desc = request.form.get('description')
         org = request.form.get('organizer')
         loc = request.form.get('location')
 
@@ -261,8 +277,12 @@ def add_event(username):
             
             flash('Event added successfully')
             return redirect(request.url)
-
-    return render_template('add_event.html')
+        
+    author = find_author(username)
+    if author:
+        author = author[0]
+        return render_template('add_event.html', author=author)
+    return redirect(request.url)
 
 
 
@@ -291,12 +311,6 @@ def about():
 @app.route('/home')
 def update():
     return render_template('index.html')
-
-@app.route('/event', methods=['GET', 'POST'])
-def event():
-    if request.method == 'POST':
-        pass
-    return render_template('event.html')
 
 @app.route('/team')
 def team():

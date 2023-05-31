@@ -12,16 +12,36 @@
 
 {% block content %}
 
+<style type="text/css">
+  .sec-3{
+    padding-top: 3%;
+    display: flex-start;
+  }
+  
+  #register{
+    color: blue;
+  }
+</style>
 
 <section id="create_new_event">
-  <form action="{{ url_for("event") }}" method="post" class="search-bar">
-    <input type="text" placeholder="search" name="q">
-    <button type="submit"><img src="/static/images/search.png" alt=""></button>
-  </form>
+  {% if user %}
+    <form action="{{ url_for("user_events" , username=author[2]) }}" method="post" class="search-bar">
+      <input type="text" placeholder="search" name="q">
+      <button type="submit"><img src="/static/images/search.png" alt=""></button>
+    </form>
+
+  {% else %}
+    <form action="{{ url_for("event") }}" method="post" class="search-bar">
+      <input type="text" placeholder="search" name="q">
+      <button type="submit"><img src="/static/images/search.png" alt=""></button>
+    </form>
+  
+  {% endif %}
+
 
   {% if user %}
     <div class="create_event">
-      <a href="/{{username}}/add_event" id="create-event-btn"><button>Create Event</button></a>
+      <a href="/{{author[2]}}/add_event" id="create-event-btn">Create Event</a>
     </div>
   {% endif %}
 </section>
@@ -32,58 +52,63 @@
       <div class="upcoming-sec">
         <div class="heading">Upcoming Events</div>
       </div>
-      <div class="upcoming-event-list">
-        <div class="event-block">
-          <div class="row">
-            <div class="col-lg-2 sec-1">
-              <table>
-                <tr>
-                  <td>
-                    <div class="month">jun</div>
-                    <div class="month-date-devider"></div>
-                    <div class="date">27</div>
-                  </td>
-                  <td class="title">Community Cleaning</td>
-                </tr>
-              </table>
-            </div>
-            <div class="col-lg-5 sec-2">
-              <img src="https://cdn.ghanaweb.com/imagelib/pics/764/76422776.jpg" />
-            </div>
-            <div class="col-lg-5 sec-3">
-              <div class="title">Cleaning At Kasoa Durbur Ground</div>
-              <div class="venue">
+
+      {% for event in events %}
+        <div class="upcoming-event-list">
+          <div class="event-block">
+            <div class="row">
+              <div class="col-lg-2 sec-1">
                 <table>
                   <tr>
-                    <td><i class="fa fa-map-marker"></i></td>
                     <td>
-                      <div>Ofori Ampong</div>
-                      <div class="dim-color">
-                        <a href="https://www.google.co.in" target="blank">Get Directions</a>
-                      </div>
+                      <div class="month">{{event[7]}}</div>
+                      <div class="month-date-devider"></div>
+                      <div class="date">{{event[8][:2]}}</div>
                     </td>
+                    <!--<td class="title">{{event[1]}}</td>-->
                   </tr>
                 </table>
               </div>
-              <div class="time">
-                <table>
-                  <tr>
-                    <td><i class="fa fa-clock-o"></i></td>
-                    <td>
-                      <div>Saturday, Jun 27, 2023 at 5:30 PM</div>
-                      <div data-livestamp="1517054400" class="dim-color"></div>
-                    </td>
-                  </tr>
-                </table>
+              <div class="col-lg-5 sec-2">
+                <img src="/static/images/{{event[6]}}" />
               </div>
-              <div class="sort-story">"Join the community lets clean up the environment for the health of our children" - Joe</div>
-              <div class="group-of-btn">
-                <a href="https://www.google.com" target="blank" class="btn book-ticket">Register</a>
+              <div class="col-lg-5 sec-3">
+                <div class="title">{{event[1]}}</div>
+                <div class="venue">
+                  <table>
+                    <tr>
+                      <td><i class="fa fa-map-marker"></i></td>
+                      <td>
+                        <div class="dim-color">
+                          <a href="https://www.google.co.in" target="blank">GET DIRECTION</a>
+                        </div>
+                        <div>{{event[4]}}</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="time">
+                  <table>
+                    <tr>
+                      <td><i class="fa fa-clock-o"></i></td>
+                      <td>
+                        <div>{{event[8]}}</div>
+                        <div data-livestamp="1517054400" class="dim-color"></div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="sort-story">{{event[3]}}</div>
+                <div class="group-of-btn">
+                  <a href="https://www.google.com" target="blank" class="btn book-ticket" id="register">REGISTER</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+
+      {% endfor %}
+
     </div>
   </div>
 

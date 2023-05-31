@@ -68,7 +68,7 @@
 
         <h2>Schedule an Event</h2>
         
-        <form action="{{ url_for("add_events", username=author[2]) }}" method="post" enctype="multipart/form-data" class="form-signup">
+        <form action="{{ url_for("add_event", username=author[2]) }}" method="post" enctype="multipart/form-data" class="form-signup">
             <!---Title--->
             <div class="form-group">
                 <input type="text" class="form-control" name="title" placeholder="Title" required>

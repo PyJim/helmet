@@ -55,7 +55,6 @@ header {
 }
 
 .Nav-links ul li a:hover,
-#create-event-btn:hover,
 .Nav-links ul li.active a {
   color: red;
 }
@@ -91,6 +90,7 @@ header {
 
 #footer{
   margin-top: 6%;
+  bottom: 0;
 }
 
 #report-homepage{
@@ -144,7 +144,7 @@ header {
 .Nav-links ul li button, 
 .contact-form-btn, 
 .read-more,
-.create_event a button{
+.create_event a {
   display: inline-block;
   width: 150px;
   padding: 10px;
@@ -156,6 +156,7 @@ header {
   border: none;
   cursor: pointer;
 }
+
 .Nav-links ul li button{
   width: 200px;
 }
@@ -167,8 +168,17 @@ header {
 .Nav-links ul li button:hover, 
 .read-more:hover, 
 .contact-form-btn:hover,
-#create-event-btn button:hover {
+.create_event a:hover{
   background-color: red;
+  color: white;
+}
+
+#create-event-btn{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
 }
 
 .map {
@@ -1197,3 +1207,7 @@ svg {
   width: 25px;
   border-radius: 40%;
 }
+.no_result{
+  text-align: center;
+}
+

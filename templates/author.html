@@ -46,10 +46,14 @@
     {% if not hide_session %}
         <section class="search_container">
             <form action="{{ url_for("author_home", username=author[2]) }}" method="post" class="search-bar">
-                <input type="text" placeholder="search" name="q">
+                <input type="text" placeholder="search" name="q" id="livebox">
                 <button type="submit"><img src="/static/images/search.png" alt=""></button>
             </form>
         </section>
+
+        {% if not reports %}
+            <h4 class="no_result">No result found</h4>
+        {% endif %}
 
         <section id="report-homepage">
 
@@ -108,5 +112,21 @@
     
 </body>
     <script src="script.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $("#livebox").on("input", function(e){
+                textinlivebox = $('#livebox').val();
+                $.ajax({
+                    method: "post",
+                    url: "/author/{{author[2]}}",
+                    data: {text:textinlivebox},
+                    success: function(res){
+                        console.log(res);
+                    }
+                })
+            })
+        });
+    </script>
 
 </html>
