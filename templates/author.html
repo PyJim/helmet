@@ -113,20 +113,4 @@
 </body>
     <script src="script.js"></script>
 
-    <script>
-        $(document).ready(function(){
-            $("#livebox").on("input", function(e){
-                textinlivebox = $('#livebox').val();
-                $.ajax({
-                    method: "post",
-                    url: "/author/{{author[2]}}",
-                    data: {text:textinlivebox},
-                    success: function(res){
-                        console.log(res);
-                    }
-                })
-            })
-        });
-    </script>
-
 </html>
