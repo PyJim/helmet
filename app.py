@@ -284,6 +284,9 @@ def add_event(username):
         return render_template('add_event.html', author=author)
     return redirect(request.url)
 
+@app.route('/<username>/notification')
+def user_notification(username):
+    return render_template('notification.html')
 
 
 @app.route('/contact', methods=['GET', 'POST'])
