@@ -1,0 +1,201 @@
+{% extends 'author.html' %}
+{% set hide_session = True %}
+{% block title %}Helmet App - Add Event{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+   @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap");
+:root {
+  --Red: hsl(1, 90%, 64%);
+  --Blue: hsl(219, 85%, 26%);
+  --White: hsl(0, 0%, 100%);
+  --Very-light-grayish-blue: hsl(210, 60%, 98%);
+  --Light-grayish-blue-1: hsl(211, 68%, 94%);
+  --Light-grayish-blue-2: hsl(205, 33%, 90%);
+  --Grayish-blue: hsl(219, 14%, 63%);
+  --Dark-grayish-blue: hsl(219, 12%, 42%);
+  --Very-dark-blue: hsl(224, 21%, 14%);
+}
+* {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+.container {
+  margin: 2rem;
+  width: 700px;
+  background-color: var(--White);
+  padding: 1.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 200px;
+  
+}
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.notif_box {
+  display: flex;
+  align-items: center;
+}
+#notifes {
+  background-color: var(--Blue);
+  margin-left: 0.5rem;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  color: var(--White);
+  font-weight: 800;
+  border-radius: 0.5rem;
+}
+#mark_all {
+  cursor: pointer;
+}
+#mark_all:hover {
+  color: var(--Blue);
+}
+p {
+  color: var(--Dark-grayish-blue);
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  
+}
+.notif_card {
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+img{
+  width: 50px;
+  border-radius: 100%;
+}
+.description{
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+strong{
+  color: var(--Very-dark-blue);
+  cursor: pointer;
+}
+strong:hover{
+  color: var(--Blue);
+}
+.unread{
+  background-color: var(--Light-grayish-blue-1) !important;
+}
+.unread p:first-of-type::after{
+  content: " ";
+  background-color: var(--Red);
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.message_card{
+  display: flex;
+  align-items: center;
+
+}
+.message{
+  padding: 1rem;
+  border: 1px solid var(--Light-grayish-blue-2);
+  border-radius: .3rem;
+  cursor: pointer;
+  margin: 0 0 0 5rem;
+}
+.message:hover{
+  background-color: var(--Light-grayish-blue-1);
+}
+.chess_img{
+margin-left: auto;
+}
+
+@media screen and (max-width:550px) {
+  .container{
+    margin: 0;
+  }
+}
+
+   
+</style>
+<div class="container">
+    <main>
+        <div class="counter">
+            <div class="notif_box">
+              <h2 class="title">Notifications</h2>
+              <span id="notifes"></span>
+            </div>
+            <p id="mark_all">Mark all as read</p>
+          </div>
+      <div class="notif_card unread">
+        <img src="https://imglarger.com/Images/before-after/ai-image-enlarger-1-after-2.jpg" alt="avatar" />
+        <div class="description">
+          <p class="user_activity">
+            <strong>Mark Webber</strong> reacted to your recent post
+            <b>My first tournament today!</b>
+          </p>
+          <p class="time">1m ago</p>
+        </div>
+      </div>
+      <div class="notif_card unread">
+        <img src="./assets/images/avatar-angela-gray.webp" alt="avatar" />
+        <div class="description">
+          <p class="user_activity">
+            <strong>Angela Gray</strong> followed you
+          </p>
+          <p class="time">5m ago</p>
+        </div>
+      </div>
+      <div class="notif_card unread">
+        <img src="./assets/images/avatar-jacob-thompson.webp" alt="avatar" />
+        <div class="description">
+          <p class="user_activity">
+            <strong>Jacob Thompson</strong> has joined your group
+            <strong class="link">Chess Club</strong>
+          </p>
+          <p class="time">1 day ago</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+    const unreadMessages = document.querySelectorAll(".unread");
+    const unread = document.getElementById("notifes");
+    const markAll = document.getElementById("mark_all");
+    unread.innerText=unreadMessages.length
+
+    unreadMessages.forEach((message) => {
+        message.addEventListener("click", () => {
+            message.classList.remove("unread");
+            const newUnreadMessages = document.querySelectorAll(".unread");
+            unread.innerText = newUnreadMessages.length;
+        })
+    })
+    markAll.addEventListener("click", () => {
+        unreadMessages.forEach(message => message.classList.remove("unread"))
+        const newUnreadMessages = document.querySelectorAll(".unread");
+        unread.innerText = newUnreadMessages.length;
+})
+</script>
+{% endblock %}
