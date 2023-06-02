@@ -7,34 +7,44 @@
 
 
 
-@media (max-width: 991px){
-.menu-icon{
-  display: block;
-  margin-left: 550px;
+@media (max-width: 991px) {
+  .menu-icon {
+    display: block;
+    margin-left: 550px;
+  }
+
+  .Nav-links ul.menu {
+    display: none;
+    width: 100%;
+    border-top: 1px solid #000;
+    padding-top: 20px;
+    margin-top: 30px;
+  }
+
+  .Nav-links ul.menu.show {
+    display: block;
+  }
+
+  .Nav-links ul.menu li {
+    padding: 15px 0px;
+    width: 100%;
+  }
+
+  #contact {
+    margin-left: 0px;
+  }
+
+  /* New CSS for close icon */
+  #close-icon {
+    display: none;
+  }
+
+  .Nav-links ul.menu.show ~ .menu-icon #close-icon {
+    display: inline-block;
+    color: #000;
+  }
 }
-.Nav-links ul.menu{
-  display: none;
-  width: 100%;
-  border-top: 1px solid #000;
-  padding-top: 20px;
-  margin-top: 30px;
 
-
-} 
-.Nav-links ul.menu.show{
-  display: block;
-
-} 
-.Nav-links ul.menu li{
-  padding: 15px 0px;
-  width: 100%;
-}
-#contact{
-  margin-left: 0px;
-
-}
-
-}
 
 @media (max-width: 1133px){
   .menu-icon{
@@ -50,6 +60,12 @@
   
   
   } 
+  
+.Nav-links ul li a,
+.author h3,
+.report_head{
+    font-size: 38px ;
+  }
   .Nav-links ul.menu.show{
     display: block;
   
@@ -73,5 +89,9 @@
     display: flex;
     flex-direction: column;
   }
+  .form-signup h2 {
+    text-align: center;
+    font-size: 38px;
+}
   
   }
