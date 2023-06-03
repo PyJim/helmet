@@ -18,17 +18,19 @@
             </a>
         </div>
         <div class="Nav-links">
-            <ul class="menu">
-              <li {% if request.path == '/home' %}class="active"{% endif %}><a href="/home">Home</a></li>
-              <li {% if request.path == '/about' %}class="active"{% endif %}><a href="/about">About</a></li>
-              <li {% if request.path == '/event' %}class="active"{% endif %}><a href="/event">Events</a></li>
-              <li {% if request.path == '/faq' %}class="active"{% endif %}><a href="/faq">FAQs</a></li>
-              <li id="contact"><a href="/contact"><button>Contact Us</button></a></li>
-            </ul>
-            <div class="menu-icon" id="menu-icon" onclick="toggleMenu();">
-              <i class="fa fa-bars" aria-hidden="true"></i>
-            </div>
+          <ul class="menu">
+            <li {% if request.path == '/home' %}class="active"{% endif %}><a href="/home">Home</a></li>
+            <li {% if request.path == '/about' %}class="active"{% endif %}><a href="/about">About</a></li>
+            <li {% if request.path == '/event' %}class="active"{% endif %}><a href="/event">Events</a></li>
+            <li {% if request.path == '/faq' %}class="active"{% endif %}><a href="/faq">FAQs</a></li>
+            <li id="contact"><a href="/contact"><button>Contact Us</button></a></li>
+          </ul>
+          <div class="menu-icon" id="menu-icon" onclick="toggleMenu();">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+            <i class="fa fa-times" aria-hidden="true" id="close-icon"></i>
           </div>
+        </div>
+        
           
           
 
@@ -67,33 +69,37 @@
     </section>
 
 <script type="text/javascript">
-    function toggleMenu() {
-      var menu = document.querySelector('.Nav-links ul.menu');
-      menu.classList.toggle('show');
-    }
+   function toggleMenu() {
+  var menu = document.querySelector('.Nav-links ul.menu');
+  var closeIcon = document.getElementById('close-icon');
+  menu.classList.toggle('show');
+  closeIcon.style.display = closeIcon.style.display === 'none' ? 'inline-block' : 'none';
+}
 
-    var navLinks = document.querySelectorAll('.Nav-links ul.menu li');
-    navLinks.forEach(function(link) {
-      link.addEventListener('click', function() {
-        var menu = document.querySelector('.Nav-links ul.menu');
-        menu.classList.remove('show');
-      });
-    });
+var navLinks = document.querySelectorAll('.Nav-links ul.menu li');
+navLinks.forEach(function (link) {
+  link.addEventListener('click', function () {
+    var menu = document.querySelector('.Nav-links ul.menu');
+    var closeIcon = document.getElementById('close-icon');
+    menu.classList.remove('show');
+    closeIcon.style.display = 'none';
+  });
+});
 
+var prevScrollPos = window.pageYOffset;
+window.addEventListener('scroll', function () {
+  var currentScrollPos = window.pageYOffset;
+  var menu = document.querySelector('.Nav-links ul.menu');
 
-    var prevScrollPos = window.pageYOffset;
-    window.addEventListener('scroll', function() {
-      var currentScrollPos = window.pageYOffset;
-      var menu = document.querySelector('.Nav-links ul.menu');
+  if (prevScrollPos > currentScrollPos) {
+    menu.style.top = '0';
+  } else {
+    menu.style.top = '-100px';
+  }
 
-      if (prevScrollPos > currentScrollPos) {
-        menu.style.top = '0';
-      } else {
-        menu.style.top = '-100px';
-      }
+  prevScrollPos = currentScrollPos;
+});
 
-      prevScrollPos = currentScrollPos;
-    });
 
 </script>
   

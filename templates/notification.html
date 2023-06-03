@@ -1,6 +1,6 @@
 {% extends 'author.html' %}
 {% set hide_session = True %}
-{% block title %}Helmet App - Add Event{% endblock %}
+{% block title %}Helmet App - Report{% endblock %}
 
 {% block content %}
 
@@ -77,7 +77,7 @@ main {
   border-radius: 0.5rem;
   padding: 1rem;
 }
-img{
+#img{
   width: 50px;
   border-radius: 100%;
 }
@@ -142,7 +142,7 @@ margin-left: auto;
             <p id="mark_all">Mark all as read</p>
           </div>
       <div class="notif_card unread">
-        <img src="https://imglarger.com/Images/before-after/ai-image-enlarger-1-after-2.jpg" alt="avatar" />
+        <img src="https://imglarger.com/Images/before-after/ai-image-enlarger-1-after-2.jpg" alt="avatar" id="img" />
         <div class="description">
           <p class="user_activity">
             <strong>Mark Webber</strong> reacted to your recent post

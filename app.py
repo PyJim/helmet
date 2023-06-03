@@ -247,7 +247,7 @@ def home(username):
 
 @app.route('/<username>/notification', methods=['GET', 'POST'])
 def notification(username):
-    author = "{author[0]}"  # Replace with the appropriate value
+    author = "{author}"  # Replace with the appropriate value
     return render_template('notification.html', author=author)
 
 
