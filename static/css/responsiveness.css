@@ -1,97 +1,64 @@
-@media (max-width: 2021px){
-  .menu-icon{
-    display: none;
+@media (max-width:991px){
+  header{
+    padding: 0 20px;
+
   }
-
-}
-
-
-
-@media (max-width: 991px) {
-  .menu-icon {
-    display: block;
-    margin-left: 550px;
-  }
-
-  .Nav-links ul.menu {
-    display: none;
-    width: 100%;
-    border-top: 1px solid #000;
-    padding-top: 20px;
-    margin-top: 30px;
-  }
-
-  .Nav-links ul.menu.show {
-    display: block;
-  }
-
-  .Nav-links ul.menu li {
-    padding: 15px 0px;
-    width: 100%;
-  }
-
-  #contact {
-    margin-left: 0px;
-  }
-
-  /* New CSS for close icon */
-  #close-icon {
-    display: none;
-  }
-
-  .Nav-links ul.menu.show ~ .menu-icon #close-icon {
-    display: inline-block;
-    color: #000;
-  }
-}
-
-
-@media (max-width: 1133px){
   .menu-icon{
     display: block;
-    margin-left: 550px;
+    margin-left: 100px;
   }
-  .Nav-links ul.menu{
+  header nav{
     display: none;
+    position: absolute;
     width: 100%;
-    border-top: 1px solid #000;
-    padding-top: 20px;
-    margin-top: 30px;
-  
-  
-  } 
-  
-.Nav-links ul li a,
-.author h3,
-.report_head{
-    font-size: 38px ;
+    height: calc(100vh-- 50px);
+    background: #1b1b1b;
+    box-shadow: 20px;
+    top: 50px;
+    left: 0;
+    transition: 0.5s;
   }
-  .Nav-links ul.menu.show{
+  header nav ul {
     display: block;
-  
-  } 
-  .Nav-links ul.menu li{
-    padding: 15px 0px;
-    width: 100%;
+    text-align: center;
+    
   }
-  #contact{
-    margin-left: 0px;
-  
+  header nav ul a{
+    border-bottom: 1px solid rgba(0, 0, 0, .4);
+    color: white;
+  }
+  header nav ul li a{
+    color: white;
+  }
+
+  .author{
+    display: none;
   }
   #index-homepage{
     display: flex;
-    flex-direction: column;
-  }
-  .author{
-    display: none;
+    flex-wrap: wrap;
   }
   #report_container{
     display: flex;
     flex-direction: column;
   }
-  .form-signup h2 {
-    text-align: center;
-    font-size: 38px;
+  .card{
+    width: 100%;
+    padding: 10px
+    ;
+  }
+  .card img{
+    width: 100%;
+    height: auto;
+  }
+#report_container .card:first-child,
+#report_container .card:first-child img{
+  width: 100%;
+}
+footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
   
-  }
+}
