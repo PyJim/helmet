@@ -17,54 +17,64 @@ header {
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
+  box-sizing: border-box;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 0 100px;
   z-index: 100;
 }
 
-.Logo img {
-  height: 50px;
-  margin-left: 100px;
+header .Logo img {
+  height: 80px;
+  float: left;
+  padding: 10px;
 }
 
-.Nav-links {
+header nav {
   flex-grow: 1;
+  float: right;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.Nav-links ul {
+header nav ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
 }
 
-.Nav-links ul li {
+header nav ul li {
   margin-right: 20px;
   padding: 20px;
 }
 
-.Nav-links ul li a,
+header nav ul li a,
 .author h3,
 .report_head {
   color: black;
   text-decoration: none;
   font-size: 24px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
   font-family: "Hind Kochi", sans-serif;
 }
 
-.Nav-links ul li a:hover,
-.Nav-links ul li.active a {
+header nav ul li a:hover,
+header nav ul li.active a {
   color: red;
 }
 
-
-
-.filter-icon {
-  margin-right: 40px;
+.menu-icon{
+  color: #000;
+  cursor: pointer;
+  display: block;
+  width: 80px;
 }
+
 
 .author{
   margin-right: 100px;
@@ -143,7 +153,7 @@ header {
 }
 
 .Left-side button, 
-.Nav-links ul li button, 
+header nav ul li button, 
 .contact-form-btn, 
 .read-more,
 .create_event a {
@@ -159,7 +169,7 @@ header {
   cursor: pointer;
 }
 
-.Nav-links ul li button{
+header nav ul li button{
   width: 200px;
 }
 
@@ -167,7 +177,7 @@ header {
   margin-left: 70px;
 }
 .Left-side button:hover, 
-.Nav-links ul li button:hover, 
+header nav ul li button:hover, 
 .read-more:hover, 
 .contact-form-btn:hover,
 .create_event a:hover{
@@ -370,6 +380,7 @@ footer {
   color: white;
   transition: 1s;
 }
+
 
 .footerNav {
   margin: 30px 0;
