@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/myposts.css">
+    <title>My Posts</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/helmet.png" style="width: 50px; height: 50px; border-radius: 50%;" alt="">
+            <h1>HELMET</h1>
+        </div>
+        <div class="nav-menu">
+            <a href="/author/{{author[2]}}">HOME</a>
+            <a href="#events">EVENTS</a>
+            <a href="#notifications">NOTIFICATIONS</a>
+            <a href="/{{author[2]}}/report" class="active">MY POSTS</a>
+        </div>
+    
+        <div class="logout">
+            <a href="/">LOGOUT</a>
+        </div>
+    </div>
+
+    <div id="posts">
+        <h2 style="color: #fff;">Here are some latests updates for you</h2>
+        <div class="search-bar">
+            <form action="{{ url_for("event") }}" method="post" class="search-bar">
+                <input type="text" placeholder="search for post" name="q" id="q">
+                <button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass" style="color: #9d861f;"></i></button>
+            </form>
+        </div>
+    
+        <div class="inner">
+            {% if not reports %}
+                <h4 class="no_result">No result found</h4>
+            
+            {% else %}
+            {% for report in reports %}
+            <div class="post">
+                {% if report[4] == '' %}
+                    <img src="/static/images/sun1.jpg" alt="">
+                {% else %}
+                    <img src="/static/images/{{report[4]}}" alt="">
+                {% endif %}
+            
+                <h3>{{report[1]}}</h3>
+                <p>{{report[3]}}</p>
+                <h4><span><a href="#">read more</a></span><br>
+                    <div class="edit_del">
+                        <div class="edit">
+                            <form action="{{ url_for("event") }}" method="post">
+                                <input type="text" value="{{report[0]}}" style="display: none;">
+                                <button type="submit" id="edit-btn">Edit</button>
+                            </form>
+                        </div>
+                        <div class="del">
+                            <form action="{{ url_for("del_post") }}" method="post">
+                                <input type="text" value="{{report[0]}}" name="post_id" style="display: none;">
+                                <button type="submit" id="delete-btn">Del</button>
+                            </form>
+                        </div>
+                    </div>
+                </h4>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div id="create_post">
+
+        <div class="signup-inner">
+            <div class="form">
+                <h1><span>Add</span> Post</h1>
+                <h2>What is happening?</h2>
+                <form action="{{ url_for("report", username=author[2]) }}" method="post" enctype="multipart/form-data"
+                    class="form-signup">
+                    <!---Title--->
+                    <input type="text" class="form-control" name="title" placeholder="Title" required>
+                
+                    <!---location-->
+                    <input type="text" class="form-control" name="location" placeholder="Affected Locality" required>
+                
+                    <!---description-->
+                    <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                
+                    <!-- image -->
+                    <input type="file" class="form-control btn-success btn-block img-btn" name="file" value="Image" autocomplete="off" required>
+                
+                    <!---video link-->
+                    <input type="text" class="form-control" name="video" placeholder="Link to video">
+                
+                    <!--- Submit --->
+                    <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="Log Report">
+                
+                </form>
+                </div>
+        </div>
+    </div>
+
+    <div id="events">
+        <div class="events-inner">
+            <h2><span>UPCOMING</span> EVENTS</h2>
+    
+            <div class="events">
+                {% if events %}
+                <ul>
+                    {% for event in events %}
+                    <li>
+                        <div class="time">
+                            <h2>{{event[8][:2]}}<br><span>{{event[7]}}</span></h2>
+                        </div>
+                        <div class="details">
+                            <h3>{{event[1]}}</h3>
+                            <p>{{event[3]}}</p>
+                            <div class="bottom_row">
+                                <a href="">View Details</a>
+                                <div class="edit_del">
+                                    <div class="edit">
+                                        <form action="{{ url_for("event") }}" method="post">
+                                            <input type="text" value="{{event[0]}}" style="display: none;">
+                                            <button type="submit" id="edit-btn">Edit</button>
+                                        </form>
+                                    </div>
+                                    <div class="del">
+                                        <form action="{{ url_for("del_event") }}" method="post">
+                                            <input type="text" value="{{event[0]}}" name="event_id" style="display: none;">
+                                            <button type="submit" id="delete-btn">Del</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div style="clear: both;"></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p id="no-event" style="color:#fff;">No Events Scheduled</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div id="create_event">
+        <div class="signup-inner">
+            <div class="form">
+                <h1><span>Shedule</span> Event</h1>
+                <h2>Create an event.</h2>
+                <form action="{{ url_for("add_event", username=author[2]) }}" method="post" enctype="multipart/form-data"
+                    class="form-signup">
+                    <!---Title--->
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title" placeholder="Title" required>
+                    </div>
+                
+                    <!---location-->
+                    <div class="form-group">
+                        <input type="datetime-local" class="form-control" name="datetime" placeholder="Date" required>
+                    </div>
+                
+                
+                    <!---description-->
+                    <div class="form-group">
+                        <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                    </div>
+                
+                    <!---organizer--->
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="organizer" placeholder="Organizer" required>
+                    </div>
+                
+                    <!---location-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="location" placeholder="Location">
+                    </div>
+                
+                    <!-- image -->
+                    <div class="form-group">
+                        <input type="file" class="form-control btn-success btn-block img-btn" name="file" value="Image"
+                            autocomplete="off" required>
+                    </div>
+                
+                    <!--- Submit --->
+                    <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="Save">
+                
+                </form>
+    
+\            </div>
+        </div>
+    </div>
+
+    <section id="footer">
+        <footer>
+            <div class="footerContainer">
+                <div class="socialIcons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+    
+                <div class="footerNav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+            <div class="footerBottom">
+                <p>Copyright &copy;2023; Designed by <span class="designer">Helmet</span></p>
+            </div>
+        </footer>
+    </section>
+</body>
+</html>

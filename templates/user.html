@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/user.css">
+    <title>Helmet Username</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/helmet.png" style="width: 50px; height: 50px; border-radius: 50%;" alt="">
+            <h1>HELMET</h1>
+        </div>
+        <div class="nav-menu">
+            <a href="#home" class="active">HOME</a>
+            <a href="#events">EVENTS</a>
+            <a href="#notifications">NOTIFICATIONS</a>
+            <a href="/{{author[2]}}/report">MY POSTS</a>
+        </div>
+
+        <div class="logout">
+            <a href="/">LOGOUT</a>
+        </div>
+    </div>
+
+    <div id="home">
+        <div class="inner">
+            <h1>Recent Posts</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus nemo exercitationem deleniti et atque eos?</p>
+        </div>
+    </div>
+    
+    <div id="posts">
+        <h2 style="color: #fff;">Here are some latests updates for you</h2>
+        <div class="search-bar">
+            <form action="{{ url_for("author_home", username=author[2]) }}" method="post" class="search-bar">
+                <input type="text" placeholder="search for post" name="q" id="q">
+                <button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass" style="color: #9d861f;"></i></button>
+            </form>
+        </div>
+
+        <div class="inner">
+            {% if not reports %}
+                <h4 class="no_result">No result found</h4>
+            
+            {% else %}
+                {% for report in reports %}
+                    <div class="post">
+                        {% if report[4] == '' %}
+                            <img src="/static/images/sun1.jpg" alt="">
+                        {% else %}
+                            <img src="/static/images/{{report[4]}}" alt="">
+                        {% endif %}
+
+                        <h3>{{report[1]}}</h3>
+                        <p>{{report[3]}}</p>
+                        <h4><span><a href="#">read more</a></span><br>Jimmy Essel</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+
+        </div>
+    </div>
+    
+    <div id="events">
+        <div class="events-inner">
+            <h2><span>UPCOMING</span> EVENTS</h2>
+            <div class="search-bar">
+                <form action="{{ url_for("user_events", username=author[2]) }}" method="post" class="search-bar">
+                    <input type="text" placeholder="search for post" name="q" id="q">
+                    <button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass" style="color: #9d861f;"></i></button>
+                </form>
+            </div>
+            <div class="events">
+                {% if events %}
+                <ul>
+                    {% for event in events %}
+                    <li>
+                        <div class="time">
+                            <h2>{{event[8][:2]}}<br><span>{{event[7]}}</span></h2>
+                        </div>
+                        <div class="details">
+                            <h3>{{event[1]}}</h3>
+                            <p>{{event[3]}}</p>
+                            <a href="">View Details</a>
+                        </div>
+                        <div style="clear: both;"></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p id="no-event" style="color:#fff;">No Events Scheduled</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <section id="footer">
+        <footer>
+            <div class="footerContainer">
+                <div class="socialIcons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+    
+                <div class="footerNav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+            <div class="footerBottom">
+                <p>Copyright &copy;2023; Designed by <span class="designer">Helmet</span></p>
+            </div>
+        </footer>
+    </section>
+</body>
+</html>

@@ -1,21 +1,387 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Helmet</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/helmet.png" style="width: 50px; height: 50px; border-radius: 50%;" alt="">
+            <h1>HELMET</h1>
+        </div>
+        <div class="nav-menu">
+            <a href="#home" class="active">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#events">EVENTS</a>
+            <a href="#faqs">FAQs</a>
+            <a href="#contact">CONTACTS</a>
 
-{% block title %}Helmet App - Home{% endblock %}
+        </div>
+        <div class="search-bar">
+            <form action="{{ url_for("event") }}" method="post" class="search-bar">
+                <input type="text" placeholder="search for event" name="q" id="q">
+                <button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass" style="color: #9d861f;"></i></button>
+            </form>
+        </div>
+    </div>
 
-{% block content %}
-<section id="index-homepage">
-    
-    <div class="Left-side">
-        <h1>Get Latest Information <br>
-             On Problems <br> Across The Country
-        </h1>
+    <div id="home">
+        <div class="home-inner">
+            <div class="texts">
+                <h1>YOUR PROBLEM HAS A SOLUTION</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas architecto dicta officia vitae reprehenderit, quis
+                    ratione corporis minima! Sequi, molestiae!</p>
+                <a href="#signup">Get Started</a>
+            </div>
+        </div>
         
-        <a href="/signup"><button>SIGN UP</button></a>
-        <a href="{{ url_for('news') }}"><button>NEWS</button></a>
-        <a href="{{ url_for('statistics') }}"><button>STATISTICS</button></a>
     </div>
-    <div class="map">
-        <img src="/static/images/preserve.jpeg" alt="map">
+
+    <div id="about">
+        <h2><span>ABOUT </span>US</h2>
+        <div class="about__content">
+            <div class="about__image">
+                <img src="/static/images/lion.jpg" alt="">
+            </div>
+            <div class="about__text">
+                <div class="mission">
+                    <h2>OUR MISSION</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quaerat itaque eligendi enim repellendus hic maiores reiciendis, aliquam eaque labore! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil architecto nobis asperiores modi dolorem aliquam possimus aspernatur officiis repellendus?</p>
+                </div>
+                <div class="vision">
+                    <h2>OUR VISION</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quaerat itaque eligendi enim repellendus hic maiores reiciendis, aliquam eaque labore! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam eaque cupiditate a, architecto ad recusandae error</p>
+                </div>
+                <a href="#">Learn more</a>
+            </div>
+        </div>
+        
     </div>
-</section>
-{% endblock %}
+
+    {% if signin %}
+        <div id="signup">
+            <div class="signup-inner">
+                <div class="form">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="flash">
+                        {% for message in messages %}
+                        <li class="flash-message">{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                    <h1><span>WELCOME</span> BACK</h1>
+                    <h2>Sign in</h2>
+                    <form action="{{ url_for("login") }}" method="post">
+                        <div class="row">
+                            <input type="text" placeholder="username" name="username">
+                        </div>
+                        <div class="row">
+                            <input type="password" placeholder="password" name="password">
+                        </div>
+                        <div class="row">
+                            <input type="submit" value="Sign in" class="btn" style="color: #fff;">
+                        </div>
+                    </form>
+                
+                    <p>Do not have an account? <span><a href="/signup">Create new account</a></span></p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div id="signup">
+            <div class="signup-inner">
+                <div class="form">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <ul class="flash">
+                        {% for message in messages %}
+                        <li class="flash-message">{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% endwith %}
+                    <h1><span>WELCOME</span> TO HELMET</h1>
+                    <h2>Sign up</h2>
+                    <form action="{{ url_for("create_account") }}" method="post">
+                        <div class="row">
+                            <input type="text" name="name" placeholder="Full Name" required>
+                        </div>
+                        <div class="row">
+                            <input type="text" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="row">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="row">
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="row">
+                            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                        </div>
+                        <div class="row">
+                            <input type="submit" value="Sign in" class="btn" style="color: #fff;">
+                        </div>
+                    </form>
+        
+                    <p>Already have an account? <span><a href="/signin">Login here</a></span></p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div id="events">
+        <div class="events-inner">
+            <h2><span>UPCOMING</span> EVENTS</h2>
+            
+            <div class="events">
+                {% if events %}
+                <ul>
+                    {% for event in events %}
+                        <li>
+                            <div class="time">
+                                <h2>{{event[8][:2]}}<br><span>{{event[7]}}</span></h2>
+                            </div>
+                            <div class="details">
+                                <h3>{{event[1]}}</h3>
+                                <p>{{event[3]}}</p>
+                                <a href="">View Details</a>
+                            </div>
+                            <div style="clear: both;"></div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p id="no-event" style="color:#fff;">No Events Scheduled</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div id="team">
+        <h1>OUR <span>AWESOME</span> TEAM</h1>
+        <div class="container">
+            <div class="icon">
+                <div class="imgBx active" style="--i:1;" data-id="content1">
+                    <img src="/static/images/jim.jpg" alt="">
+                </div>
+                <div class="imgBx" style="--i:2;" data-id="content2">
+                    <img src="/static/images/zatey.jpg" alt="">
+                </div>
+                <div class="imgBx" style="--i:3;" data-id="content3">
+                    <img src="/static/images/mina.jpg" alt="">
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="contentBx active" id="content1">
+                    <div class="card">
+                        <div class="imgBx">
+                            <img src="/static/images/jim.jpg" alt="">
+                        </div>
+                        <div class="textBx">
+                            <h2>Jimmy Essel<br><span>Backend Developer</span></h2>
+                            <ul class="sci">
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contentBx" id="content2">
+                    <div class="card">
+                        <div class="imgBx">
+                            <img src="/static/images/zatey.jpg" alt="">
+                        </div>
+                        <div class="textBx">
+                            <h2>Michael Zatey<br><span>Frontend Developer</span></h2>
+                            <ul class="sci">
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contentBx" id="content3">
+                    <div class="card">
+                        <div class="imgBx">
+                            <img src="/static/images/mina.jpg" alt="">
+                        </div>
+                        <div class="textBx">
+                            <h2>Wilhelmina Asante<br><span>Product Designer</span></h2>
+                            <ul class="sci">
+                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="faqs">
+        <div class="faq-inner">
+            <h2 class="title">FAQs</h2>
+            <div class="faq">
+                <div class="question">
+                    <h3>What is JavaScript ?</h3>
+            
+                    <svg width="15" height="10" viewBox="0 0 42 25">
+                        <path d="M3 3L21 21L39 3" stroke="white" stroke-width="7" stroke-linecap="round" />
+                    </svg>
+                </div>
+            
+                <div class="answer">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga quibusdam nisi unde sequi deleniti modi
+                        adipisci officiis, accusamus ducimus quam alias molestias, minima, beatae molestiae?
+                    </p>
+                </div>
+            </div>
+            
+            
+            <div class="faq">
+                <div class="question">
+                    <h3>What is JavaScript ?</h3>
+            
+                    <svg width="15" height="10" viewBox="0 0 42 25">
+                        <path d="M3 3L21 21L39 3" stroke="white" stroke-width="7" stroke-linecap="round" />
+                    </svg>
+                </div>
+            
+                <div class="answer">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga quibusdam nisi unde sequi deleniti modi
+                        adipisci
+                        officiis, accusamus ducimus quam alias molestias, minima, beatae molestiae?
+                    </p>
+                </div>
+            </div>
+            
+            
+            <div class="faq">
+                <div class="question">
+                    <h3>What is JavaScript ?</h3>
+            
+                    <svg width="15" height="10" viewBox="0 0 42 25">
+                        <path d="M3 3L21 21L39 3" stroke="white" stroke-width="7" stroke-linecap="round" />
+                    </svg>
+                </div>
+            
+                <div class="answer">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga quibusdam nisi unde sequi deleniti modi
+                        adipisci
+                        officiis, accusamus ducimus quam alias molestias, minima, beatae molestiae?
+                    </p>
+                </div>
+            </div>
+            
+            
+            <div class="faq">
+                <div class="question">
+                    <h3>What is JavaScript ?</h3>
+            
+                    <svg width="15" height="10" viewBox="0 0 42 25" style="color:#fff;">
+                        <path d="M3 3L21 21L39 3" stroke="white" stroke-width="7" stroke-linecap="round" />
+                    </svg>
+                </div>
+            
+                <div class="answer">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga quibusdam nisi unde sequi deleniti modi
+                        adipisci
+                        officiis, accusamus ducimus quam alias molestias, minima, beatae molestiae?
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact">
+        <div class="contact-form">
+            <div class="map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127066.75982422291!2d-0.26213126058140784!3d5.591202954296263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9084b2b7a773%3A0xbed14ed8650e2dd3!2sAccra!5e0!3m2!1sen!2sgh!4v1686150378409!5m2!1sen!2sgh"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="form-content">
+                <h1>Contact <span>Us</span></h1>
+                <form>
+                    <input type="text" placeholder="Name" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Your message" required></textarea>
+                    <input type="submit" value="Send Message" id="sendbtn">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <section id="footer">
+        <footer>
+            <div class="footerContainer">
+                <div class="socialIcons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+    
+                <div class="footerNav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+            <div class="footerBottom">
+                <p>Copyright &copy;2023; Designed by <span class="designer">Helmet</span></p>
+            </div>
+        </footer>
+    </section>
+    
+    <script>
+        let imgBx = document.querySelectorAll('.imgBx');
+        let contentBx = document.querySelectorAll('.contentBx');
+
+        for (let i = 0; i < imgBx.length; i++){
+            imgBx[i].addEventListener('mouseover', function(){
+                for (let j = 0; j < contentBx.length; j++){
+                    contentBx[j].className = 'contentBx';
+                }
+                document.getElementById(this.dataset.id).className = 'contentBx active';
+
+                for (let i=0; i < imgBx.length; i++){
+                    imgBx[i].className = 'imgBx'
+                }
+                this.className = 'imgBx active';
+            })
+        }
+
+    </script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

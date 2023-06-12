@@ -1,0 +1,576 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+html {
+    background: #000;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbar .logo h1 {
+    font-size: 20px;
+    color: rgb(157, 124, 31);
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.navbar .nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .nav-menu a {
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0 10px;
+    color: #fff;
+}
+
+.navbar .nav-menu a:hover {
+    color: rgb(157, 124, 31);
+}
+
+.navbar .nav-menu a.active {
+    color: rgb(157, 124, 31);
+}
+
+.navbar .logout {
+    width: 100px;
+    height: 35px;
+    color: #fff;
+    background: rgb(157, 124, 31);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .logout a {
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+}
+
+#posts {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #000;
+    align-items: center;
+    padding-top: 50px;
+}
+
+#posts h2 {
+    margin-bottom: 50px;
+    font-weight: 400;
+}
+
+#posts .inner {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10%;
+    margin-top: 30px;
+}
+
+#posts .inner .post {
+    width: 350px;
+    height: 400px;
+    background: rgb(31, 31, 31);
+    margin: 10px;
+    border-radius: 15px;
+}
+
+#posts .inner .post img {
+    top: 0;
+    width: 100%;
+    height: 45%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#posts .inner .post h3 {
+    font-size: 20px;
+    color: #fff;
+    margin: 10px 20px;
+    margin-bottom: 0;
+}
+
+#posts .inner .post p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.852);
+    margin: 10px 20px;
+    height: 20%;
+}
+
+#posts .inner .post h4 {
+    font-size: 16px;
+    text-transform: uppercase;
+    color: rgb(157, 124, 31);
+    margin: 10px 20px;
+    font-weight: bold;
+    display: flex;
+    margin: 20px 20;
+    margin-top: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#posts .inner .post h4 .edit_del{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+#posts .inner .post h4 .edit_del .edit,
+#posts .inner .post h4 .edit_del .del,
+#posts .inner .post h4 .edit_del button{
+    width: 50px;
+    height: 35px;
+}
+
+#deletebtn, #editbtn{
+    width: 50px;
+    height: 35px;
+    background: black;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+#posts .inner .post h4 a {
+    text-decoration: none;
+    background: transparent;
+    border: 2px solid #eee;
+    color: #eee;
+    padding: 5px 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#posts .search-bar,
+#events .search-bar {
+    width: 350px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(157, 124, 31);
+    border-radius: 5px;
+}
+
+#posts .search-bar input,
+#events .search-bar input {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+#posts .search-bar button,
+#events .search-bar button {
+    width: 15%;
+    height: 100%;
+    top: 0;
+    background: black;
+    border-radius: 5px;
+}
+
+#create_event,
+#create_post {
+    width: 100%;
+    height: 100vh;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url("bg3.jpg") no-repeat center center / cover;
+}
+
+#create_event .signup-inner,
+#create_post .signup-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.flash ul {
+    list-style-type: none;
+    align-self: center;
+    text-align: center;
+}
+
+.flash-message,
+.flash-message-green {
+    color: rgb(157, 124, 31);
+    list-style-type: none;
+    text-align: center;
+    margin-left: -10px;
+}
+
+.flash-message-green {
+    color: rgb(157, 124, 31);
+}
+
+#create_event .form,
+#create_post .form {
+    width: 500px;
+    height: 600px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    border: transparent;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+#create_event .form form,
+#create_post .form form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#create_event .form h1,
+#create_post .form h1 {
+    font-size: 30px;
+    margin: 30px 20px;
+    color: #fff;
+}
+
+#create_event .form h1 span,
+#create_post .form h1 span {
+    color: rgb(157, 124, 31);
+}
+
+#create_event .form h2,
+#create_post .form h2 {
+    font-size: 20px;
+    font-weight: 300;
+    color: #fff;
+}
+
+#create_event .form form input,
+#create_post .form form input {
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    padding: 3px 5px;
+    margin: 5px;
+    outline: none;
+    color: #333
+}
+#create_event .form form textarea,
+#create_post .form form textarea{
+    width: 250px;
+    height: 100px;
+    border-radius: 10px;
+    padding: 3px 5px;
+    resize: none;
+    margin: 5px;
+}
+
+.btn {
+    background: rgb(157, 124, 31);
+    font-size: 18px;
+}
+
+
+#events {
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+    background: black;
+    display: flex;
+    justify-content: center;
+}
+
+#no-event {
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    color: #eee;
+}
+
+#events .events-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+}
+
+#events .events-inner h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+#events .events-inner h2 span {
+    color: rgb(157, 124, 31);
+}
+
+#events .events {
+    position: relative;
+    width: 70%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    box-sizing: border-box;
+}
+
+#events .events ul {
+    /*position: absolute;*/
+    top: 50%;
+    /*transform: translateY(-50%);*/
+    margin: 0;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+#events .events ul li {
+    list-style: none;
+    background: #fff;
+    box-sizing: border-box;
+    height: 200px;
+    margin: 15px 0;
+    transition: .5s;
+}
+
+#events .events ul li .time {
+    position: relative;
+    padding: 20px;
+    background: #262626;
+    box-sizing: border-box;
+    width: 30%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    transition: .5s;
+}
+
+#events .events ul li .time h2 span {
+    color: white;
+}
+
+#events .events ul li .time:hover {
+    background: rgb(157, 124, 31);
+}
+
+#events .events ul li .time:hover h2 {
+    color: black;
+}
+
+#events .events ul li .time:hover h2 span {
+    color: black;
+}
+
+#events .events ul li .time h2 {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 60px;
+    line-height: 30px;
+    transition: .5s;
+}
+
+#events .events ul li .time h2 span {
+    font-size: 30px;
+    transition: .5s;
+}
+
+#events .events ul li .details {
+    padding: 20px;
+    background: #fff;
+    box-sizing: border-box;
+    width: 70%;
+    height: 100%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#events .events ul li .details h3 {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    color: #000;
+}
+
+#events .events ul li .details p {
+    position: relative;
+    margin: 10px 0 0;
+    padding: 0;
+    font-size: 16px;
+    color: #000;
+}
+#events .events ul li .details .bottom_row{
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+#events .events ul li .details .bottom_row .edit_del{
+    display: flex;
+
+}
+#events .events ul li .details .bottom_row .edit_del .edit,
+#events .events ul li .details .bottom_row .edit_del .del{
+    margin-left: 5px;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#events .events ul li .details .bottom_row .edit_del .edit button,
+#events .events ul li .details .bottom_row .edit_del .del button{
+    width: 80px;
+    height: 40px;
+}
+#events .events ul li .details .bottom_row a {
+    color: #000;
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 2px solid #262626;
+    font-size: 18px;
+    transition: .5s;
+}
+
+#events .events ul li .details a:hover {
+    transform: scale(1.1);
+}
+
+#footer {
+    bottom: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+footer {
+    background-color: #111;
+    padding: 0;
+    margin: 0;
+}
+
+.footerContainer {
+    width: 100%;
+    padding: 70px 30px 20px;
+    margin: 0;
+}
+
+.socialIcons {
+    display: flex;
+    justify-content: center;
+}
+
+.socialIcons a {
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+.socialIcons a i {
+    font-size: 2em;
+    color: black;
+    opacity: 0.9;
+}
+
+.socialIcons a:hover {
+    background-color: #111;
+    transition: 1s;
+}
+
+.socialIcons a:hover i {
+    color: white;
+    transition: 1s;
+}
+
+.footerNav {
+    margin: 30px 0;
+}
+
+.footerNav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.footerNav ul li a {
+    color: white;
+    margin: 20px;
+    text-decoration: none;
+    font-size: 1.3em;
+    opacity: 0.7;
+    transition: 1s;
+}
+
+.footerNav ul li a:hover {
+    opacity: 1;
+}
+
+.footerBottom {
+    background-color: #000;
+    padding: 20px;
+    text-align: center;
+}
+
+.footerBottom p {
+    color: white;
+}
+
+.designer {
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+}

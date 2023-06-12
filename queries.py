@@ -75,8 +75,8 @@ def get_all_reports():
     return result
 
 def get_author_reports(username):
-    query = f"""SELECT * FROM {username};"""
-    result = db_query(query)
+    query = f"""SELECT * FROM REPORT WHERE Author = ?;"""
+    result = db_query(query, [username])
     return result
 
 def create_report(username, title, location, description, image, video):
@@ -103,6 +103,20 @@ def allEvents(date):
     query = """SELECT * FROM EVENTS WHERE Datetime >= ?"""
     result = db_query(query, [date])
     return result
+
+def deleteEvent(event_id):
+    connection = sqlite3.connect('database.db')
+    query = """DELETE FROM EVENTS WHERE id = ?"""
+    connection.execute(query, [event_id])
+    connection.commit()
+    connection.close()
+
+def deletePost(post_id):
+    connection = sqlite3.connect('database.db')
+    query = """DELETE FROM REPORT WHERE id = ?"""
+    connection.execute(query, [post_id])
+    connection.commit()
+    connection.close()
 
 def searchPosts(phrase):
     query = """SELECT * FROM REPORT WHERE Title LIKE ?"""
