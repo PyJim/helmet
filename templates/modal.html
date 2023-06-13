@@ -1,6 +1,13 @@
 {% extends 'add.html' %}
 {% block modal %}
-
+<style type="text/css">
+    #exampleModal .modal-dialog .modal-content .modal-footer button{
+        background: #00c5cb;
+        color: #fff;
+        width: 80px;
+        margin-left: 17px;
+    }
+</style>
 <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -40,8 +47,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Edit Post</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="button">Close</button>
+                        <button type="submit" class="btn btn-primary" id="button">Save</button>
                     </div>
 
                 </>

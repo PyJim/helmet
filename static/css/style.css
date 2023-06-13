@@ -285,7 +285,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url("bg1.jpg");
+    background: url("l5.jpg") no-repeat center center / cover;
 }
 
 #faqs .faq-inner {
@@ -295,8 +295,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .faq {

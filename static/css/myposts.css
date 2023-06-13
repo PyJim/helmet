@@ -168,7 +168,12 @@ html {
     align-items: center;
     margin-right: -15px;
 }
-
+#posts .inner .post h4 .edit_del .edit #exampleModal .modal-dialog .modal-content .modal-footer button {
+    background: #00c5cb;
+    color: #fff;
+    width: 80px;
+    margin-left: 17px;
+}
 #posts .inner .post h4 .edit_del i{
     font-size: 30px;
 }
