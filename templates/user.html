@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/user.css">
-    <title>Helmet Username</title>
+    <title>Helmet {{author[2]}}</title>
 </head>
 <body>
     <div class="navbar">
@@ -18,7 +19,6 @@
         <div class="nav-menu">
             <a href="#home" class="active">HOME</a>
             <a href="#events">EVENTS</a>
-            <a href="#notifications">NOTIFICATIONS</a>
             <a href="/{{author[2]}}/report">MY POSTS</a>
         </div>
 
@@ -58,7 +58,7 @@
 
                         <h3>{{report[1]}}</h3>
                         <p>{{report[3]}}</p>
-                        <h4><span><a href="#">read more</a></span><br>Jimmy Essel</h4>
+                        <h4><span><a href="#">read more</a></span><br>{{report[6]}}</h4>
                     </div>
                 {% endfor %}
             {% endif %}
@@ -70,12 +70,7 @@
     <div id="events">
         <div class="events-inner">
             <h2><span>UPCOMING</span> EVENTS</h2>
-            <div class="search-bar">
-                <form action="{{ url_for("user_events", username=author[2]) }}" method="post" class="search-bar">
-                    <input type="text" placeholder="search for post" name="q" id="q">
-                    <button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass" style="color: #9d861f;"></i></button>
-                </form>
-            </div>
+            
             <div class="events">
                 {% if events %}
                 <ul>

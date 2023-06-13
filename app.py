@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, g, redirect, flash, url_for
-from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, add_report, get_all_reports, get_author_reports, addEvent, searchEvents, allEvents, searchPosts, deleteEvent, deletePost
+from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, edit_report, add_report, get_all_reports, get_author_reports, addEvent, searchEvents, allEvents, searchPosts, deleteEvent, deletePost, searchUserEvents, searchUserPosts, getUserEvents
 import os
 from flask_bcrypt import Bcrypt
 from flask import Flask, render_template, request
@@ -159,6 +159,7 @@ def author_home(username):
         phrase = request.form.get('q')
         if phrase != '':
             all_reports = searchPosts(phrase)
+            events = searchEvents(phrase, current_datetime)
     
     if all_reports:
         for report in all_reports:
@@ -180,7 +181,7 @@ def author_home(username):
 @app.route('/<username>/report', methods=['GET', 'POST'])
 def report(username):
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    events = allEvents(current_datetime)
+    events = getUserEvents(username, current_datetime)
     all_reports = get_author_reports(username)
 
     if request.method == 'POST':
@@ -225,7 +226,7 @@ def report(username):
 def user_events(username):
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     events = allEvents(current_datetime)
-    all_reports = get_all_reports()
+    reports = get_all_reports()
 
     author = find_author(username)
     if author:
@@ -236,9 +237,28 @@ def user_events(username):
         if phrase != '':
             date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             events = searchEvents(phrase, date_time)
+            reports = get_author_reports(username)
 
-    return render_template('user.html', user=username, author=author, events=events, reports=all_reports)
+    return render_template('user.html', user=username, author=author, events=events, reports=reports)
 
+@app.route('/<username>/my_events', methods=['GET', 'POST'])
+def user_myevents(username):
+    current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    events = allEvents(current_datetime)
+    reports = get_author_reports(username)
+
+    author = find_author(username)
+    if author:
+        author = author[0]
+
+    if request.method == 'POST':
+        phrase = request.form.get('q')
+        if phrase != '':
+            date_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            events = searchUserEvents(phrase, username, date_time)
+            reports = searchUserPosts(phrase, username)
+
+    return render_template('add.html', user=username, author=author, events=events, reports=reports)
 
 @app.route('/event', methods=['GET', 'POST'])
 def event():
@@ -307,19 +327,20 @@ def add_event(username):
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             flash('Image successfully uploaded')
-            addEvent(title, date_time, desc, org, loc, filename)
+            addEvent(title, date_time, desc, org, loc, filename, username)
             print("done")
             flash('Event added successfully')
             return redirect(request.url)
         
     current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    events = allEvents(current_datetime)
+    events = getUserEvents(username, current_datetime)
     all_reports = get_author_reports(username)
     author = find_author(username)
     if author:
         author = author[0]
         return render_template('add.html', author=author, reports=all_reports, events=events)
     return redirect(request.url)
+
 
 @app.route('/event/del', methods=['GET', 'POST'])
 def del_event():
@@ -340,6 +361,46 @@ def del_post():
 @app.route('/<username>/notification')
 def user_notification(username):
     return render_template('notification.html')
+
+@app.route('/edit_post/<post_id>', methods=['GET','POST'])
+def edit_post(post_id):
+    current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    events = getUserEvents(user, current_datetime)
+    all_reports = get_author_reports(user)
+    author = find_author(user)
+
+    if request.method == 'POST':
+        title = request.form.get('title')
+        location = request.form.get('location')
+        description = request.form.get('description')
+        video = request.form.get('video')
+
+        if 'file' not in request.files:
+            flash('No file chosen')
+            return redirect(request.url)
+
+        file = request.files['file']
+
+        if file.filename == '':
+            flash('No image selected')
+            return redirect(request.url)
+
+        if file and allowed_file(file.filename):
+            filename = secure_filename(str(file.filename))
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            flash('Image successfully uploaded')
+
+            edit_report(user, title, location, description, filename, video, post_id)
+
+            return redirect(f'/{user}/myposts')
+
+        else:
+            flash('Allowed image types are - png, jpg, jpeg and gif')
+            return redirect(request.url)
+
+    return render_template('modal.html', author=author, reports=all_reports, events=events,report_id = post_id)
+
 
 
 if __name__ == '__main__':

@@ -94,9 +94,21 @@ def add_report(username, title, location, description, image, video):
     connection.commit()
     connection.close()
 
+def edit_report(username, title, location, description, image, video, report_id):
+    connection = sqlite3.connect('database.db')
+    query = """UPDATE REPORT SET Title=?, Loc=?, Des=?, Img=?, Vid=?, Author=? WHERE id = ?;"""
+    connection.execute(query, [title, location, description, image, video, username, report_id])
+    connection.commit()
+    connection.close()
+
 def searchEvents(phrase, datetime):
     query = """SELECT * FROM EVENTS WHERE Title LIKE ? AND Datetime >= ?"""
     result = db_query(query, [phrase, datetime])
+    return result
+
+def getUserEvents(user, datetime):
+    query = """SELECT * FROM EVENTS WHERE Author = ? AND Datetime >= ?"""
+    result = db_query(query, [user, datetime])
     return result
 
 def allEvents(date):
@@ -118,19 +130,36 @@ def deletePost(post_id):
     connection.commit()
     connection.close()
 
+
 def searchPosts(phrase):
     query = """SELECT * FROM REPORT WHERE Title LIKE ?"""
     result = db_query(query, [phrase])
     return result
 
-def addEvent(title, date_time, desc, org, loc, image):
+def searchUserPosts(phrase, username):
+    query = """SELECT * FROM REPORT WHERE Title LIKE ? AND Author = ?"""
+    result = db_query(query, [phrase, username])
+    return result
+
+def searchUserEvents(phrase, username, datetime):
+    query = """SELECT * FROM EVENTS WHERE Title LIKE ? AND  Author = ? AND Datetime = ?"""
+    result = db_query(query, [phrase, username, datetime])
+    return result
+
+def addEvent(title, date_time, desc, org, loc, image, username):
     date_time = datetime.strptime(date_time, '%Y-%m-%dT%H:%M')
     month = date_time.strftime("%b")
     date_string = f'{date_time.strftime("%d %B, %Y")} {date_time.strftime("%I:%M %p")}'
 
     connection = sqlite3.connect('database.db')
-    query = """INSERT INTO EVENTS (Title, Datetime, Desc, Organizer, Loc, Img, Month, Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?);"""
-    connection.execute(query, [title, date_time, desc, org, loc, image, month, date_string])
+    query = """INSERT INTO EVENTS (Title, Datetime, Desc, Organizer, Loc, Img, Month, Date, Author) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);"""
+    connection.execute(query, [title, date_time, desc, org, loc, image, month, date_string, username])
     connection.commit()
     connection.close()
     
+
+def getPostById(id):
+    connection = sqlite3.connect('database.db')
+    query = """SELECT * FROM REPORT WHERE id = ?"""
+    result = db_query(query, [id])
+    return result
