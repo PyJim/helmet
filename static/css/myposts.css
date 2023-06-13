@@ -34,7 +34,7 @@ html {
 
 .navbar .logo h1 {
     font-size: 20px;
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
     margin: 0 10px;
     cursor: pointer;
 }
@@ -53,18 +53,18 @@ html {
 }
 
 .navbar .nav-menu a:hover {
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 .navbar .nav-menu a.active {
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 .navbar .logout {
     width: 100px;
     height: 35px;
     color: #fff;
-    background: rgb(157, 124, 31);
+    background: #00c5cb;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -137,7 +137,7 @@ html {
 #posts .inner .post h4 {
     font-size: 16px;
     text-transform: uppercase;
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
     margin: 10px 20px;
     font-weight: bold;
     display: flex;
@@ -197,7 +197,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgb(157, 124, 31);
+    border: 1px solid #00c5cb;
     border-radius: 5px;
 }
 
@@ -249,14 +249,14 @@ html {
 
 .flash-message,
 .flash-message-green {
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
     list-style-type: none;
     text-align: center;
     margin-left: -10px;
 }
 
 .flash-message-green {
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 #create_event .form,
@@ -288,7 +288,7 @@ html {
 
 #create_event .form h1 span,
 #create_post .form h1 span {
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 #create_event .form h2,
@@ -319,7 +319,7 @@ html {
 }
 
 .btn {
-    background: rgb(157, 124, 31);
+    background: #00c5cb;
     font-size: 18px;
 }
 
@@ -360,7 +360,7 @@ html {
 }
 
 #events .events-inner h2 span {
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 #events .events {
@@ -406,7 +406,7 @@ html {
 }
 
 #events .events ul li .time:hover {
-    background: rgb(157, 124, 31);
+    background: #00c5cb
 }
 
 #events .events ul li .time:hover h2 {

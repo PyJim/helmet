@@ -13,7 +13,7 @@
 
     <style type="text/css">
         .btn-success{
-            background: rgb(157, 124, 31);
+            background: #00c5cb;
             border: none;
         }
     </style>
@@ -40,7 +40,7 @@
         <div class="search-bar">
             <form action="{{ url_for("user_myevents", username=author[2]) }}" method="post" class="search-bar">
                 <input type="text" placeholder="search for post" name="q" id="q">
-                <button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass" style="color: #9d861f;"></i></button>
+                <button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass" style="color: #00c5cb;"></i></button>
             </form>
         </div>
     
@@ -63,14 +63,14 @@
                     <div class="edit_del">
                         <div class="edit">
                             
-                            <a href="/edit_post/{{report[0]}}"><i class="fa-solid fa-pen-to-square" style="color: #9d7c1f;"></i></a>
+                            <a href="/edit_post/{{report[0]}}"><i class="fa-solid fa-pen-to-square" style="color: #00c5cb;"></i></a>
                             
                             {% block modal %}{% endblock %}
                         </div>
                         <div class="del">
                             <form action="{{ url_for("del_post") }}" method="post">
                                 <input type="text" value="{{report[0]}}" name="post_id" style="display: none;">
-                                <button type="submit" id="delete-btn"><i class="fa-solid fa-trash-can" style="color: #9d7c1f;"></i></button>
+                                <button type="submit" id="delete-btn"><i class="fa-solid fa-trash-can" style="color: #00c5cb;"></i></button>
                             </form>
                         </div>
                     </div>

@@ -29,7 +29,7 @@
 }
 .navbar .logo h1{
     font-size: 20px;
-    color: rgb(157, 124, 31);
+    color: #fff;
     margin: 0 10px;
     cursor: pointer;
 }
@@ -44,10 +44,10 @@
     margin: 0 10px;
 }
 .navbar .nav-menu a:hover{
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 .navbar .nav-menu a.active{
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 #q{
@@ -75,7 +75,7 @@
 
 
 #home{
-    background: url("sunset.jpg") no-repeat center / cover;
+    background: url("l4.jpg") no-repeat center / cover;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -88,8 +88,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 #home .home-inner .texts{
     width: 40%;
@@ -117,7 +117,7 @@
     height: 40px;
     padding: 10px;
     padding-bottom: 10px;
-    background: rgb(157, 124, 31);
+    background: #00c5cb;
     text-align: center;
     text-decoration: none;
     margin-top: 10px;
@@ -144,7 +144,7 @@
     text-align: center;
 }
 #about h2 span{
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 #about .about__content{
@@ -186,7 +186,7 @@
     width: 150px;
     height: 40px;
     padding: 10px;
-    background: rgb(157, 124, 31);
+    background: #00c5cb;
     text-align: center;
     text-decoration: none;
     margin-top: 30px;
@@ -196,7 +196,7 @@
     justify-content: center;
 }
 #about .about__content .about__text h2 span{
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 #signup{
@@ -227,14 +227,14 @@
 
 .flash-message,
 .flash-message-green {
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
     list-style-type: none;
     text-align: center;
     margin-left: -10px;
 }
 
 .flash-message-green {
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 #signup .form{
@@ -256,7 +256,7 @@
 }
 
 #signup .form h1 span{
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 #signup .form h2{
     font-size: 20px;
@@ -274,7 +274,7 @@
     color: #333
 }
 .btn{
-    background: rgb(157, 124, 31);
+    background: #00c5cb;
     font-size: 18px;
 }
 
@@ -309,7 +309,7 @@
 
 #faqs .faq-inner h2{
     font-size: 30px;
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 
 .question {
@@ -381,7 +381,7 @@ svg {
     margin-bottom: 30px;
 }
 #events .events-inner h2 span{
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 #events .events{
     position: relative;
@@ -421,7 +421,7 @@ svg {
     color: white;
 }
 #events .events ul li .time:hover{
-    background: rgb(157, 124, 31);
+    background: #00c5cb;
 }
 #events .events ul li .time:hover h2{
     color: black;
@@ -502,7 +502,7 @@ svg {
     margin: 50px 20px;
 }
 #contact .contact-form .form-content h1 span{
-    color: rgb(157, 124, 31);
+    color: #00c5cb
 }
 #contact .contact-form{
     display: flex;
@@ -525,7 +525,7 @@ svg {
 #contact .contact-form .form-content{
     width: 50%;
     height: 100%;
-    background: url("sunset.jpg");
+    background: url("l4.jpg");
     display: flex;
     align-items: center;
     justify-content: center;
@@ -558,7 +558,7 @@ svg {
 }
 
 #contact .contact-form .form-content form #sendbtn{
-    background: rgb(157, 124, 31);
+    background: #00c5cb;
     border: none;
     font-size: 18px;
 }
@@ -591,7 +591,7 @@ svg {
     font-weight: 600;
 }
 #team h1 span{
-    color: rgb(157, 124, 31);
+    color: #00c5cb;
 }
 #team .container{
     position: relative;
@@ -627,7 +627,7 @@ svg {
 }
 #team .container .icon .imgBx.active{
     box-shadow: 0 0 0 6px #222,
-    0 0 0 12px rgb(157, 124, 31);
+    0 0 0 12px #00c5cb;
 }
 #team .container .icon .imgBx img{
     position: absolute;
@@ -656,7 +656,7 @@ svg {
     position: absolute;
     inset: 60px;
     border: 4px solid transparent;
-    border-left: 4px solid rgb(157, 124, 31);
+    border-left: 4px solid #00c5cb;
     border-right: 4px solid #fff;
     border-radius: 50%;
     animation: animate_01 5s linear infinite;
@@ -678,7 +678,7 @@ svg {
     position: absolute;
     inset: 120px;
     border: 4px solid transparent;
-    border-left: 4px solid rgb(157, 124, 31);
+    border-left: 4px solid #00c5cb;
     border-right: 4px solid #fff;
     border-radius: 50%;
     animation: animate_02 2.5s linear infinite;
@@ -772,7 +772,7 @@ svg {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(157, 124, 31);
+    background: #00c5cb;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
