@@ -31,6 +31,9 @@
             background: #333;
             border-radius: 50%;            
         }
+        #no-result-found{
+            margin-top: 50px;
+        }
     </style>
 </head>
 <body>
@@ -58,49 +61,58 @@
                 <button type="submit" id="searchbtn"><i class="fa-solid fa-magnifying-glass" style="color: #00c5cb;"></i></button>
             </form>
         </div>
-    
-        <div class="inner">
-            {% if not reports %}
-                <h4 class="no_result">No result found</h4>
-            
-            {% else %}
-            {% for report in reports %}
-            <div class="post">
-                {% if report[4] == '' %}
-                    <img src="/static/images/sun1.jpg" alt="">
-                {% else %}
-                    <img src="/static/images/{{report[4]}}" alt="">
-                {% endif %}
-            
-                <h3>{{report[1]}}</h3>
-                <p>{{report[3]}}</p>
-                <h4><span><a href="#">read more</a></span><br>
-                    <div class="edit_del">
-                        <div class="edit">
-                            
-                            <a href="/edit_post/{{report[0]}}"><i class="fa-solid fa-pen-to-square" style="color: #00c5cb;"></i></a>
-                            
-                            {% block modal %}{% endblock %}
-                        </div>
-                        <div class="del">
-                            <a href="/del_post/{{report[0]}}"><i class="fa-solid fa-trash-can" style="color: #00c5cb;"></i></a>
-                            {% block delete %}{% endblock %}
-                        </div>
-                    </div>
-                </h4>
+        
+        {% if not reports %}
+            <h2 style="color: #fff; font-size: 30px; margin-top: 30px; margin-bottom: 0;"><span style="color: #00c5cb;">ACTIVE</span> POSTS</h2>
+            <h4 class="no_result" id="no-result-found">No result found</h4>
+            <div class="inner">
+                <div class="plus-btn" id="create_new_post">
+                    <a href="#create_post">
+                        <i class="fa-solid fa-plus" style="color: #00c5cb;"></i>
+                    </a>
+                </div>
             </div>
-            {% endfor %}
-            {% endif %}
             
-            <div class="plus-btn">
-                <a href="#create_post">
-                    <i class="fa-solid fa-plus" style="color: #00c5cb;"></i>
-                </a>
+        {% else %}
+            <div class="inner">
+                {% for report in reports %}
+                <div class="post">
+                    {% if report[4] == '' %}
+                        <img src="/static/images/sun1.jpg" alt="">
+                    {% else %}
+                        <img src="/static/images/{{report[4]}}" alt="">
+                    {% endif %}
+                
+                    <h3>{{report[1]}}</h3>
+                    <p>{{report[3]}}</p>
+                    <h4><span><a href="#">read more</a></span><br>
+                        <div class="edit_del">
+                            <div class="edit">
+                                
+                                <a href="/edit_post/{{report[0]}}"><i class="fa-solid fa-pen-to-square" style="color: #00c5cb;"></i></a>
+                                
+                                {% block modal %}{% endblock %}
+                            </div>
+                            <div class="del">
+                                <a href="/del_post/{{report[0]}}"><i class="fa-solid fa-trash-can" style="color: #00c5cb;"></i></a>
+                                {% block delete %}{% endblock %}
+                            </div>
+                        </div>
+                    </h4>
+                </div>
+                {% endfor %}
+
+                <div class="plus-btn" id="create_new_post">
+                    <a href="#create_post">
+                        <i class="fa-solid fa-plus" style="color: #00c5cb;"></i>
+                    </a>
+                </div>
             </div>
-        </div>
+            
+        {% endif %}     
     </div>
 
-    <div id="create_post">
+    <div id="create_post" class="create_post">
 
         <div class="signup-inner">
             <div class="form">
@@ -124,7 +136,7 @@
                     <input type="text" class="form-control" name="video" placeholder="Link to video">
                 
                     <!--- Submit --->
-                    <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="Log Report">
+                    <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="Log Report" id="submit-button">
                 
                 </form>
                 </div>
@@ -166,10 +178,10 @@
                     {% endfor %}
                 </ul>
                 {% else %}
-                <p id="no-event" style="color:#fff;">No Events Scheduled</p>
+                <p id="no-event" style="color: #212529; text-transform: none; font-size: 24px;">No events scheduled</p>
                 {% endif %}
-                <div class="plus-btn">
-                    <a href="#create_event">
+                <div class="plus-btn" style="margin-left: -75px;">
+                    <a href="#create_event" id="create_new_event">
                         <i class="fa-solid fa-plus" style="color: #00c5cb;"></i>
                     </a>
                 </div>
@@ -177,7 +189,7 @@
         </div>
     </div>
     
-    <div id="create_event">
+    <div id="create_event" class="create_event">
         <div class="signup-inner">
             <div class="form">
                 <h1><span>Shedule</span> Event</h1>

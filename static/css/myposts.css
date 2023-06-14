@@ -223,8 +223,8 @@ html {
     border-radius: 5px;
 }
 
-#create_event,
-#create_post {
+.create_event.active,
+.create_post.active {
     width: 100%;
     height: 100vh;
     background: black;
@@ -232,6 +232,11 @@ html {
     align-items: center;
     justify-content: center;
     background: url("bg3.jpg") no-repeat center center / cover;
+}
+
+.create_post,
+.create_event{
+    display: none;
 }
 
 #create_event .signup-inner,
