@@ -22,14 +22,14 @@
 
 ## 2. Features
     The Helmet web application provides the following features:
-    Signin and Sign up: Users can create an account and sign in to the application.
-    Add Post: Users can create and publish posts to report problems or share information.
-    Add Event: Users can create and schedule events in their communities.
-    Register for Event: Users can register and sign up for events created by others.
-    View All Posts: Users can view all published posts on the application.
-    View All Events: Users can browse and view all scheduled events.
-    Search for Events: Users can search for specific events based on keywords or filters.
-    Search for Posts: Users can search for specific posts based on keywords or filters.
+    - Signin and Sign up: Users can create an account and sign in to the application.
+    - Add Post: Users can create and publish posts to report problems or share information.
+    - Add Event: Users can create and schedule events in their communities.
+    - Register for Event: Users can register and sign up for events created by others.
+    - View All Posts: Users can view all published posts on the application.
+    - View All Events: Users can browse and view all scheduled events.
+    - Search for Events: Users can search for specific events based on keywords or filters.
+    - Search for Posts: Users can search for specific posts based on keywords or filters.
 
 ## 3. Installation
     Follow the step-by-step instructions below to install the Helmet web application from the public GitHub repository.
@@ -39,8 +39,7 @@
         Python 3.x installed on your system
         Git installed on your system
         Virtual environment tool (e.g., venv, virtualenv) installed
-        Integrated Development Environment (e.g, vscode,sublime)
-        flask
+        Integrated Development Environment (e.g, vscode, sublime)
 
     ### 3.2 Cloning the Repository
         Open a terminal or command prompt.
@@ -69,6 +68,8 @@
 
         This will initialize, migrate, and upgrade the database.
 
+        Run the app by executing flask run in the terminal. The application will then run on port 5000 of your localhost.
+
 ## 4. Usage
     The following section describes how to use the various features of the Helmet web application.
 
@@ -83,13 +84,13 @@
 
     ### 4.2 Add Post
         Sign in to the Helmet application.
-        Click on the  button besides Post
+        Click on the "+" button besides Post
         Fill in the necessary information, such as the title, description, add image and video link..
         Click on the "save" button to add the post.
 
     ### 4.3 Add Event
         Sign in to the Helmet application.
-        Click on the  button besides  event
+        Click on the "+" button besides  event
         Provide details about the event, including the title, date, time, location, and description.
         Click on the "Create Event" button to schedule the event.
 
@@ -120,7 +121,7 @@
         Enter keywords or filters in the search bar located on the homepage.
         Press Enter or click on the search icon.
         The application will display a list of posts matching the search criteria.
-        
+
 ## 5. Conclusion
         Congratulations! You have successfully installed and learned how to use the Helmet Flask web application. Now you can report problems, schedule events, and connect with others in your community. If you encounter any issues or have any feedback, please don't hesitate to reach out to us on team.helmet@gmail.com.
 
