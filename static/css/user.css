@@ -150,6 +150,8 @@ html{
     color: #fff;
     margin: 10px 20px;
     margin-bottom: 0;
+    height: 5%;
+    overflow: hidden;
 }
 #posts .inner .post p{
     font-size: 16px;
