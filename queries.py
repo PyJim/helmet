@@ -101,6 +101,18 @@ def edit_report(username, title, location, description, image, video, report_id)
     connection.commit()
     connection.close()
 
+
+def editEvent(title, date_time, desc, org, loc, image, username, event_id):
+    date_time = datetime.strptime(date_time, '%Y-%m-%dT%H:%M')
+    month = date_time.strftime("%b")
+    date_string = f'{date_time.strftime("%d %B, %Y")} {date_time.strftime("%I:%M %p")}'
+
+    connection = sqlite3.connect('database.db')
+    query = """UPDATE EVENTS SET Title=?, Datetime=?, Desc=?, Organizer=?, Loc=?, Img=?, Month=?, Date=?, Author=? WHERE id=?;"""
+    connection.execute(query, [title, date_time, desc, org, loc, image, month, date_string, username, event_id])
+    connection.commit()
+    connection.close()
+
 def searchEvents(phrase, datetime):
     query = """SELECT * FROM EVENTS WHERE Title LIKE ? AND Datetime >= ?"""
     result = db_query(query, [phrase, datetime])

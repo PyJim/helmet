@@ -134,7 +134,8 @@ html {
     height: 20%;
 }
 
-#posts .inner .post h4 {
+#posts .inner .post h4,
+#events .event-inner .events h4 {
     font-size: 16px;
     text-transform: uppercase;
     color: #00c5cb;

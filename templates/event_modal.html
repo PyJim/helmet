@@ -1,0 +1,111 @@
+{% extends 'add.html' %}
+{% block editevent %}
+<style type="text/css">
+    #exampleModal .modal-dialog .modal-content .modal-footer button{
+        background: #00c5cb;
+        color: #fff;
+        width: 80px;
+        margin-left: 17px;
+    }
+    #exampleModal .modal-dialog .modal-content .modal-footer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #exampleModal .modal-dialog .modal-content{
+        background: rgba(0, 0, 0, 1);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 600px;
+        height: 750px;
+    }
+    #exampleModal .modal-dialog{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #exampleModal{
+        top: -650px;
+        position: fixed;
+    }
+    .modal-title{
+        color: #00c5cb;
+        text-transform: uppercase;
+    }
+    .modal-backdrop{
+        position: relative;
+    }
+    #exampleModal .modal-dialog .modal-content .head{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: -230px;
+    }
+    #exampleModal .modal-dialog .modal-content .modal-body{
+        flex: none;
+    }
+</style>
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="head">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: rgba(255, 255, 255, 1);">&times;</span>
+                </button>
+            </div>
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Edit Event</h4>
+            </div>
+            <div>
+                <p style="color: white;">Did something change?</p>
+            </div>
+            <div class="modal-body">
+                <form action="{{ url_for("edit_event", event_id=event_id) }}" method="post" enctype="multipart/form-data"
+                    class="form-signup">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="id" name="event_id" value="{{event_id}}" style="display: none;" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="datetime-local" class="form-control" name="datetime" placeholder="Date" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="organizer" placeholder="Organizer" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="location" placeholder="Location">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control btn-success btn-block img-btn" name="file" value="Image" autocomplete="off"
+                            required>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="button">Close</button>
+                        <button type="submit" class="btn btn-primary" id="button">Save</button>
+                    </div>
+
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+$(document).ready(function(){
+    console.log("Window is loaded");
+    $("#exampleModal").modal("show");
+})
+</script>
+{% endblock %}

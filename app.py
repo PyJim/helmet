@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, g, redirect, flash, url_for
-from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, edit_report, add_report, get_all_reports, get_author_reports, addEvent, searchEvents, allEvents, searchPosts, deleteEvent, deletePost, searchUserEvents, searchUserPosts, getUserEvents
+from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, editEvent, edit_report, add_report, get_all_reports, get_author_reports, addEvent, searchEvents, allEvents, searchPosts, deleteEvent, deletePost, searchUserEvents, searchUserPosts, getUserEvents
 import os
 from flask_bcrypt import Bcrypt
 from flask import Flask, render_template, request
@@ -353,8 +353,9 @@ def del_event(event_id):
         if request.method == 'POST':
             deleteEvent(event_id)
             return redirect(f'/{user}/myposts')
-        
-        return render_template('deleteevent.html', author=author, reports=all_reports, events=events,event_id = event_id)        
+        if author:
+            author = author[0]
+            return render_template('deleteevent.html', author=author, reports=all_reports, events=events,event_id = event_id)        
     return redirect('/signin')
     
 @app.route('/del_post/<post_id>', methods=['GET', 'POST'])
@@ -369,7 +370,9 @@ def del_post(post_id):
             deletePost(post_id)
             return redirect(f'/{user}/myposts')
         
-        return render_template('deletepost.html', author=author, reports=all_reports, events=events,report_id = post_id)
+        if author:
+            author = author[0]
+            return render_template('deletepost.html', author=author, reports=all_reports, events=events,report_id = post_id)
 
     return redirect('/signin')
 
@@ -414,8 +417,52 @@ def edit_post(post_id):
             else:
                 flash('Allowed image types are - png, jpg, jpeg and gif')
                 return redirect(request.url)
+        if author:
+            author = author[0]
+            return render_template('modal.html', author=author, reports=all_reports, events=events,report_id = post_id)
+    return redirect('/signin')
 
-        return render_template('modal.html', author=author, reports=all_reports, events=events,report_id = post_id)
+@app.route('/edit_event/<event_id>', methods=['GET','POST'])
+def edit_event(event_id):
+    if user:
+        current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        events = getUserEvents(user, current_datetime)
+        all_reports = get_author_reports(user)
+        author = find_author(user)
+
+        if request.method == 'POST':
+        # title, date, time, desc, org, loc, story, image
+            title = request.form.get('title')
+            date_time = request.form['datetime']
+            desc = request.form.get('description')
+            org = request.form.get('organizer')
+            loc = request.form.get('location')
+
+            if 'file' not in request.files:
+                flash('No file chosen')
+                return redirect(request.url)
+
+            file = request.files['file']
+
+            if file.filename == '':
+                flash('No image selected')
+                return redirect(request.url)
+
+            if file and allowed_file(file.filename):
+                filename = secure_filename(str(file.filename))
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+                flash('Image successfully uploaded')
+                editEvent(title, date_time, desc, org, loc, filename, user, event_id)
+                print("done")
+                flash('Event added successfully')
+                return redirect(f'/{user}/myposts')
+            else:
+                flash('Allowed image types are - png, jpg, jpeg and gif')
+                return redirect(request.url)
+        if author:
+            author = author[0]
+            return render_template('event_modal.html', author=author, reports=all_reports, events=events,event_id = event_id)
     return redirect('/signin')
 
 
