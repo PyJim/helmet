@@ -478,5 +478,21 @@ def post(post_id):
             return render_template('post.html', post=post, author=author)
     return redirect('/signin')
 
+@app.route('/register_event', methods=['GET','POST'])
+def register_event():
+    if user:
+        if request.method == 'POST':
+
+            #logic for sending contact details to be implemented.
+            flash("Thank you for registering")
+            return redirect(f'/author/{user}')
+        
+        author = find_author(user)
+        if author:
+            author = author[0]
+            return render_template('register_event.html', author=author)
+    return redirect('/signin')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

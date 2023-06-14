@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/myposts.css">
+    <title>Register Event</title>
+</head>
+
+<style type="text/css">
+    #create_post{
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+</style>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/helmet.png" style="width: 50px; height: 50px; border-radius: 50%;" alt="">
+            <h1 style="color: white;">HELMET</h1>
+        </div>
+        <div class="nav-menu">
+            <a href="/author/{{author[2]}}" class="navlinks active">HOME</a>
+            <a href="/author/{{author[2]}}" class="navlinks">EVENTS</a>
+            <a href="/{{author[2]}}/report" class="navlinks">MY POSTS</a>
+        </div>
+    
+        <div class="logout">
+            <a href="/">LOGOUT</a>
+        </div>
+    </div>
+
+    <div id="create_post">
+    
+        <div class="signup-inner">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                <li class="flash-message">{{message}}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <div class="form">
+                <h1><span>EVENT</span> REGISTRATION</h1>
+                <h2>Register for Event</h2>
+                <form action="{{ url_for("register_event") }}" method="post" method="post" enctype="multipart/form-data"
+                    class="form-signup">
+                    <!---Title--->
+                    <input type="text" class="form-control" name="name" placeholder="Name" required>
+
+                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+    
+                    <!---location-->
+                    <input type="text" class="form-control" name="location" placeholder="Your location" required>
+
+                    <input type="text" class="form-control" name="phone" placeholder="Phone Number" required>
+    
+                    <!---description-->
+                    <textarea class="form-control" name="description" placeholder="Let us know if you will require any kind of help to attend." required></textarea>
+    
+                    <!--- Submit --->
+                    <input type="submit" class="btn btn-success btn-block submit-btn" name="" value="REGISTER" id="submit-button">
+    
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section id="footer">
+        <footer>
+            <div class="footerContainer">
+                <div class="socialIcons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+    
+                <div class="footerNav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+            <div class="footerBottom">
+                <p>Copyright &copy;2023; Designed by <span class="designer">Helmet</span></p>
+            </div>
+        </footer>
+    </section>
+</body>
+
+</html>
