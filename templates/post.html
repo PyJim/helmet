@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/post.css">
+
+    <title>Helmet - {{post[1]}}</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/images/helmet.png" style="width: 50px; height: 50px; border-radius: 50%;" alt="">
+            <h1>HELMET</h1>
+        </div>
+        <div class="nav-menu">
+            <a href="/author/{{author[2]}}" class="navlinks">HOME</a>
+            <a href="/author/{{author[2]}}" class="navlinks">EVENTS</a>
+            <a href="/{{author[2]}}/report" class="navlinks active">MY POSTS</a>
+        </div>
+    
+        <div class="logout">
+            <a href="/">LOGOUT</a>
+        </div>
+    </div>
+
+    <div class="post_container">
+        <h1>{{post[1]}}</h1>
+        <h2>By: {{post[6]}}</h2>
+        <h3>{{post[2]}}</h3>
+        <img src="/static/images/{{post[4]}}" alt="">
+        <p>{{post[3]}}
+        </p>
+        <p>Click <a href="{{post[5]}}" class="vidlink">Here</a> to watch a video coverage related to this post.</p>
+
+    </div>
+
+    <section id="footer">
+        <footer>
+            <div class="footerContainer">
+                <div class="socialIcons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-google-plus"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+    
+                <div class="footerNav">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                    </ul>
+                </div>
+    
+            </div>
+            <div class="footerBottom">
+                <p>Copyright &copy;2023; Designed by <span class="designer">Helmet</span></p>
+            </div>
+        </footer>
+    </section>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

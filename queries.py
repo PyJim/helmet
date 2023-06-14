@@ -170,8 +170,8 @@ def addEvent(title, date_time, desc, org, loc, image, username):
     connection.close()
     
 
-def getPostById(id):
+def getPostById(post_id):
     connection = sqlite3.connect('database.db')
     query = """SELECT * FROM REPORT WHERE id = ?"""
-    result = db_query(query, [id])
+    result = db_query(query, [post_id])
     return result

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, g, redirect, flash, url_for
-from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, create_report, editEvent, edit_report, add_report, get_all_reports, get_author_reports, addEvent, searchEvents, allEvents, searchPosts, deleteEvent, deletePost, searchUserEvents, searchUserPosts, getUserEvents
+from queries import PasswordCheck, EmailCheck, check_author, create_author, find_author, create_author_reports, getPostById, create_report, editEvent, edit_report, add_report, get_all_reports, get_author_reports, addEvent, searchEvents, allEvents, searchPosts, deleteEvent, deletePost, searchUserEvents, searchUserPosts, getUserEvents
 import os
 from flask_bcrypt import Bcrypt
 from flask import Flask, render_template, request
@@ -465,6 +465,18 @@ def edit_event(event_id):
             return render_template('event_modal.html', author=author, reports=all_reports, events=events,event_id = event_id)
     return redirect('/signin')
 
+@app.get('/post/<post_id>')
+def post(post_id):
+    if user:
+        author = find_author(user)
+        post = getPostById(post_id)
+        if post:
+            post = post[0]
+            print(post)
+        if author:
+            author = author[0]
+            return render_template('post.html', post=post, author=author)
+    return redirect('/signin')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
