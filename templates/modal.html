@@ -7,43 +7,61 @@
         width: 80px;
         margin-left: 17px;
     }
+    #exampleModal .modal-dialog .modal-content{
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        height: 600px;
+    }
+    #exampleModal .modal-dialog .modal-content .head{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: -230px;
+    }
+    #exampleModal .modal-dialog .modal-content .modal-body{
+        flex: none;
+    }
 </style>
 <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            <div class="head">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #fff;">&times;</span>
+                </button>
+            </div>
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Edit Post</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            </div>
+            <div>
+                <p style="color: white;">Did something change?</p>
             </div>
             <div class="modal-body">
                 <form action="{{ url_for("edit_post", post_id=report_id) }}" method="post" enctype="multipart/form-data"
                     class="form-signup">
                     <div class="form-group">
-                        <label for="title" class="col-form-label">Title:</label>
-                        <input type="text" class="form-control" id="title" name="title" required>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
                     </div>
                     <div class="form-group">
-                        <label for="id" class="col-form-label">Report ID:</label>
-                        <input type="text" class="form-control" id="id" name="report_id" value="{{report_id}}" readonly>
+                        <input type="text" class="form-control" id="id" name="report_id" value="{{report_id}}" style="display: none;" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="location" class="col-form-label">Location:</label>
-                        <input type="text" class="form-control" id="location" name="location" required>
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Affected area" required>
                     </div>
                     <div class="form-group">
-                        <label for="description" class="col-form-label">Description:</label>
-                        <textarea class="form-control" id="description" name="description" required></textarea>
+                        <textarea class="form-control" id="description" name="description" placeholder="description" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="file" class="col-form-label">File:</label>
-                        <input type="file" class="form-control" id="file" name="file" value="Image" autocomplete="off" required>
+                        <input type="file" class="form-control" id="file" name="file" value="Image" placeholder="Image" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                        <label for="video" class="col-form-label">Video Link:</label>
-                        <input type="text" class="form-control" id="video" name="video">
+                        <input type="text" class="form-control" id="video" name="video" placeholder="link to video">
                     </div>
 
                     <div class="modal-footer">
@@ -51,7 +69,7 @@
                         <button type="submit" class="btn btn-primary" id="button">Save</button>
                     </div>
 
-                </>
+                </form>
             </div>
             
         </div>

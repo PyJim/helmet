@@ -486,10 +486,15 @@ html {
     justify-content: center;
     align-items: center;
 }
-#events .events ul li .details .bottom_row .edit_del .edit button,
-#events .events ul li .details .bottom_row .edit_del .del button{
+#events .events ul li .details .bottom_row .edit_del .edit a,
+#events .events ul li .details .bottom_row .edit_del .del a{
     width: 80px;
     height: 40px;
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #events .events ul li .details .bottom_row a {
     color: #000;

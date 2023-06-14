@@ -13,7 +13,7 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
 UPLOAD_FOLDER = 'static/images/'
-
+user = False
 app.secret_key = 'secrete key'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
@@ -342,21 +342,36 @@ def add_event(username):
     return redirect(request.url)
 
 
-@app.route('/event/del', methods=['GET', 'POST'])
-def del_event():
-    if request.method == 'POST':
-        event_id = request.form.get("event_id")
-        deleteEvent(event_id)
+@app.route('/del_event/<event_id>', methods=['GET', 'POST'])
+def del_event(event_id):
+    if user:
+        current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        events = getUserEvents(user, current_datetime)
+        all_reports = get_author_reports(user)
+        author = find_author(user)
 
-    return redirect(f'/{user}/myposts')
+        if request.method == 'POST':
+            deleteEvent(event_id)
+            return redirect(f'/{user}/myposts')
+        
+        return render_template('deleteevent.html', author=author, reports=all_reports, events=events,event_id = event_id)        
+    return redirect('/signin')
     
-@app.route('/post/del', methods=['GET', 'POST'])
-def del_post():
-    if request.method == 'POST':
-        post_id = request.form.get("post_id")
-        deletePost(post_id)
+@app.route('/del_post/<post_id>', methods=['GET', 'POST'])
+def del_post(post_id):
+    if user:
+        current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        events = getUserEvents(user, current_datetime)
+        all_reports = get_author_reports(user)
+        author = find_author(user)
 
-    return redirect(f'/{user}/myposts')
+        if request.method == 'POST':
+            deletePost(post_id)
+            return redirect(f'/{user}/myposts')
+        
+        return render_template('deletepost.html', author=author, reports=all_reports, events=events,report_id = post_id)
+
+    return redirect('/signin')
 
 @app.route('/<username>/notification')
 def user_notification(username):
@@ -364,43 +379,44 @@ def user_notification(username):
 
 @app.route('/edit_post/<post_id>', methods=['GET','POST'])
 def edit_post(post_id):
-    current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    events = getUserEvents(user, current_datetime)
-    all_reports = get_author_reports(user)
-    author = find_author(user)
+    if user:
+        current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        events = getUserEvents(user, current_datetime)
+        all_reports = get_author_reports(user)
+        author = find_author(user)
 
-    if request.method == 'POST':
-        title = request.form.get('title')
-        location = request.form.get('location')
-        description = request.form.get('description')
-        video = request.form.get('video')
+        if request.method == 'POST':
+            title = request.form.get('title')
+            location = request.form.get('location')
+            description = request.form.get('description')
+            video = request.form.get('video')
 
-        if 'file' not in request.files:
-            flash('No file chosen')
-            return redirect(request.url)
+            if 'file' not in request.files:
+                flash('No file chosen')
+                return redirect(request.url)
 
-        file = request.files['file']
+            file = request.files['file']
 
-        if file.filename == '':
-            flash('No image selected')
-            return redirect(request.url)
+            if file.filename == '':
+                flash('No image selected')
+                return redirect(request.url)
 
-        if file and allowed_file(file.filename):
-            filename = secure_filename(str(file.filename))
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            if file and allowed_file(file.filename):
+                filename = secure_filename(str(file.filename))
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-            flash('Image successfully uploaded')
+                flash('Image successfully uploaded')
 
-            edit_report(user, title, location, description, filename, video, post_id)
+                edit_report(user, title, location, description, filename, video, post_id)
 
-            return redirect(f'/{user}/myposts')
+                return redirect(f'/{user}/myposts')
 
-        else:
-            flash('Allowed image types are - png, jpg, jpeg and gif')
-            return redirect(request.url)
+            else:
+                flash('Allowed image types are - png, jpg, jpeg and gif')
+                return redirect(request.url)
 
-    return render_template('modal.html', author=author, reports=all_reports, events=events,report_id = post_id)
-
+        return render_template('modal.html', author=author, reports=all_reports, events=events,report_id = post_id)
+    return redirect('/signin')
 
 
 if __name__ == '__main__':

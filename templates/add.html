@@ -16,6 +16,21 @@
             background: #00c5cb;
             border: none;
         }
+        .plus-btn{
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            background: #333;
+            border-radius: 50%;
+        }
+        .plus-btn a i{
+            font-size: 50px;
+            background: #333;
+            border-radius: 50%;            
+        }
     </style>
 </head>
 <body>
@@ -68,16 +83,20 @@
                             {% block modal %}{% endblock %}
                         </div>
                         <div class="del">
-                            <form action="{{ url_for("del_post") }}" method="post">
-                                <input type="text" value="{{report[0]}}" name="post_id" style="display: none;">
-                                <button type="submit" id="delete-btn"><i class="fa-solid fa-trash-can" style="color: #00c5cb;"></i></button>
-                            </form>
+                            <a href="/del_post/{{report[0]}}"><i class="fa-solid fa-trash-can" style="color: #00c5cb;"></i></a>
+                            {% block delete %}{% endblock %}
                         </div>
                     </div>
                 </h4>
             </div>
             {% endfor %}
             {% endif %}
+            
+            <div class="plus-btn">
+                <a href="#create_post">
+                    <i class="fa-solid fa-plus" style="color: #00c5cb;"></i>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -131,16 +150,12 @@
                                 <a href="">View Details</a>
                                 <div class="edit_del">
                                     <div class="edit">
-                                        <form action="{{ url_for("event") }}" method="post">
-                                            <input type="text" value="{{event[0]}}" style="display: none;">
-                                            <button type="submit" id="edit-btn">Edit</button>
-                                        </form>
+                                        <a href="/edit_event/{{event[0]}}">Edit</a>
+                                        {% block editevent %}{% endblock %}
                                     </div>
                                     <div class="del">
-                                        <form action="{{ url_for("del_event") }}" method="post">
-                                            <input type="text" value="{{event[0]}}" name="event_id" style="display: none;">
-                                            <button type="submit" id="delete-btn">Del</button>
-                                        </form>
+                                        <a href="/del_event/{{event[0]}}">Del</a>
+                                        {% block deleteevent %}{% endblock %}
                                     </div>
                                 </div>
                             </div>
@@ -153,6 +168,11 @@
                 {% else %}
                 <p id="no-event" style="color:#fff;">No Events Scheduled</p>
                 {% endif %}
+                <div class="plus-btn">
+                    <a href="#create_event">
+                        <i class="fa-solid fa-plus" style="color: #00c5cb;"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
